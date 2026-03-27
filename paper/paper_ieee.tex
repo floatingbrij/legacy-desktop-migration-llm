@@ -58,13 +58,13 @@ Software Migration, Legacy Modernization, WinUI~3, Large Language Models, Multi-
 
 \section{Introduction}
 
-Despite the rapid growth of web-based and cloud-native applications, desktop software continues to play a critical role in enterprise environments. Many organizations still rely on legacy Windows desktop frameworks---particularly Windows Forms (WinForms), Windows Presentation Foundation (WPF), and the Universal Windows Platform (UWP)---to power internal tools, financial trading systems, engineering software, enterprise dashboards, and administrative systems~\cite{mens2004}. Industry estimates suggest that millions of line-of-business applications remain built on these frameworks, representing years of accumulated domain knowledge and business logic.
+Despite the rapid growth of web-based and cloud-native applications, desktop software continues to play a critical role in enterprise environments. Many organizations still rely on legacy Windows desktop frameworks---particularly Windows Forms (WinForms), Windows Presentation Foundation (WPF), and the Universal Windows Platform (UWP)---to power internal tools, financial trading systems, engineering software, enterprise dashboards, and administrative systems. Industry estimates suggest that millions of line-of-business applications remain built on these frameworks, representing years of accumulated domain knowledge and business logic.
 
 Microsoft's modern Windows development platform is centered around WinUI~3 and the Windows App SDK, which provide improved performance, modern UI capabilities, Fluent Design integration, and decoupling from operating system release cycles. However, migrating legacy applications to this modern ecosystem remains a substantial engineering challenge.
 
 Manual migration requires developers to redesign UI layouts from imperative code-behind patterns to declarative XAML, refactor event-driven logic into the Model-View-ViewModel (MVVM) architectural pattern, map legacy controls to their modern equivalents, and adapt resource management strategies. For moderately sized applications, this process can consume weeks or months of developer effort, with significant risk of introducing regressions.
 
-Recent advances in automated code transformation and Large Language Models (LLMs) have opened new possibilities for partially automating such modernization processes. Studies at Google have demonstrated that LLM-assisted migration workflows can reduce developer effort by approximately 50\% compared to fully manual approaches~\cite{ziftci2025}. Multi-agent LLM architectures, where specialized agents handle distinct aspects of a complex task, have shown particular promise for software engineering tasks involving multiple transformation steps~\cite{moti2026,rabbi2025}.
+Recent advances in automated code transformation and Large Language Models (LLMs) have opened new possibilities for partially automating such modernization processes. Studies at Google have demonstrated that LLM-assisted migration workflows can reduce developer effort by approximately 50\% compared to fully manual approaches~\cite{ziftci2025}. Multi-agent LLM architectures, where specialized agents handle distinct aspects of a complex task, have shown particular promise for software engineering tasks involving multiple transformation steps~\cite{moti2026}.
 
 However, the existing body of research on LLM-based code migration focuses predominantly on programming language translation (e.g., C-to-Rust~\cite{luo2025,hong2025}, PL/SQL-to-Java~\cite{moti2026}) or backend system modernization. UI framework migration introduces unique challenges due to complex control hierarchies, designer-generated code patterns, visual property mappings, and event-driven interaction models. Specifically, no existing tool or research effort addresses the automated migration of Windows desktop UI frameworks (WinForms, WPF, UWP) to WinUI~3.
 
@@ -81,15 +81,15 @@ This paper addresses this gap by proposing a hybrid migration framework that int
 
 \subsection{Legacy Software Modernization}
 
-Software modernization has been extensively studied in the software engineering literature. Mens and Tourw\'{e}~\cite{mens2004} presented a comprehensive survey of software refactoring techniques. Bavota et al.~\cite{bavota2014} conducted a large-scale empirical study demonstrating that refactoring activities can significantly improve code maintainability. Baqais and Alshayeb~\cite{baqais2020} presented a systematic literature review of automated software refactoring approaches.
+Software modernization has been extensively studied in the software engineering literature. Bavota et al.~\cite{bavota2014} conducted a large-scale empirical study demonstrating that refactoring activities can significantly improve code maintainability and reduce defect density in long-lived software systems. While substantial progress has been made in automated refactoring, significant challenges remain in handling domain-specific transformation patterns---particularly UI framework migration, which requires coordinated restructuring of layout, event handling, and architectural patterns.
 
 \subsection{LLM-Based Code Migration}
 
-Moti et al.~\cite{moti2026} proposed LegacyTranslate, a multi-agent framework for translating legacy PL/SQL code to Java, achieving 45.6\% compilable outputs with the initial agent alone and an additional 8\% improvement through the full pipeline. Ziftci et al.~\cite{ziftci2025} reported on large-scale LLM-assisted code migration at Google, demonstrating that 74.45\% of code changes in 39 migration projects were generated by LLMs. Li et al.~\cite{li2026} introduced the Environment-in-the-Loop paradigm for code migration. Rabbi et al.~\cite{rabbi2025} proposed BabelCoder, achieving 94.16\% accuracy across four benchmarks. Luo et al.~\cite{luo2025} proposed IRENE for C-to-Rust translation. Wang et al.~\cite{wang2026evoc2rust} developed EvoC2Rust for project-level C-to-Rust translation.
+Moti et al.~\cite{moti2026} proposed LegacyTranslate, a multi-agent framework for translating legacy PL/SQL code to Java, achieving 45.6\% compilable outputs with the initial agent alone and an additional 8\% improvement through the full pipeline. Ziftci et al.~\cite{ziftci2025} reported on large-scale LLM-assisted code migration at Google, demonstrating that 74.45\% of code changes in 39 migration projects were generated by LLMs. Razzaq et al.~\cite{razzaq2024} further examined practical challenges in industrial code migration. Luo et al.~\cite{luo2025} proposed IRENE for C-to-Rust translation combining rule-based retrieval with LLM semantic understanding. Wang et al.~\cite{wang2026evoc2rust} developed EvoC2Rust for project-level C-to-Rust translation. Additional empirical evidence supports the viability of LLM-based migration: Paulsen et al.~\cite{paulsen2025} demonstrated scalable code translation across large repositories, while Hong et al.~\cite{hong2025} introduced type-safe migration techniques for C-to-Rust translation.
 
 \subsection{UI Framework Migration}
 
-Zeng et al.~\cite{zeng2025} conducted a pilot study on LLM-based agentic translation from Android to iOS. Gao et al.~\cite{gao2024} proposed GUIMIGRATOR, achieving 78\% UI similarity for Android-to-iOS migration. Cheng et al.~\cite{cheng2025} introduced CODEMENV, reporting an average pass@1 rate of 26.50\%. Wang et al.~\cite{wang2025apirat} proposed APIRAT for API knowledge-enhanced code translation.
+Gao et al.~\cite{gao2024} proposed GUIMIGRATOR, achieving 78\% UI similarity for Android-to-iOS migration. Cheng et al.~\cite{cheng2025} introduced CODEMENV, reporting an average pass@1 rate of 26.50\%. Wang et al.~\cite{wang2025apirat} proposed APIRAT for API knowledge-enhanced code translation.
 
 \subsection{Research Gap}
 
@@ -100,17 +100,17 @@ Table~\ref{tab:comparison} summarizes the positioning of this work. No existing 
 \label{tab:comparison}
 \centering
 \footnotesize
-\begin{tabular}{p{2.2cm}p{2.2cm}p{1.8cm}p{2cm}p{2cm}p{2.8cm}}
+\begin{tabular}{p{2.2cm}p{2.2cm}p{1.8cm}p{2cm}p{2.8cm}}
 \toprule
-\textbf{Aspect} & \textbf{LegacyTranslate~\cite{moti2026}} & \textbf{IRENE~\cite{luo2025}} & \textbf{GUIMIGRATOR~\cite{gao2024}} & \textbf{Android$\to$iOS~\cite{zeng2025}} & \textbf{This Work} \\
+\textbf{Aspect} & \textbf{LegacyTranslate~\cite{moti2026}} & \textbf{IRENE~\cite{luo2025}} & \textbf{GUIMIGRATOR~\cite{gao2024}} & \textbf{This Work} \\
 \midrule
-Source Domain & PL/SQL (backend) & C (systems) & Android XML & Android (mobile) & \textbf{WinForms/WPF/UWP} \\
-Target Domain & Java & Rust & iOS Storyboard & iOS Swift & \textbf{WinUI~3 (XAML + C\#)} \\
-Approach & Multi-agent LLM & Hybrid rule+LLM & Rule-based only & LLM-agent chain & \textbf{Hybrid rule + multi-agent} \\
-UI Handling & None & None & UI skeleton tree & Full app & \textbf{Full UI + MVVM} \\
-Static Analysis & Not specified & C AST & XML parsing & Code structure & \textbf{Roslyn AST} \\
-Agents & 3 & 0 & 0 & Chain & \textbf{4 specialized} \\
-Dataset & Private & Public+Industrial & 31 apps & Small set & \textbf{100+ public repos} \\
+Source Domain & PL/SQL (backend) & C (systems) & Android XML & \textbf{WinForms/WPF/UWP} \\
+Target Domain & Java & Rust & iOS Storyboard & \textbf{WinUI~3 (XAML + C\#)} \\
+Approach & Multi-agent LLM & Hybrid rule+LLM & Rule-based only & \textbf{Hybrid rule + multi-agent} \\
+UI Handling & None & None & UI skeleton tree & \textbf{Full UI + MVVM} \\
+Static Analysis & Not specified & C AST & XML parsing & \textbf{Roslyn AST} \\
+Agents & 3 & 0 & 0 & \textbf{4 specialized} \\
+Dataset & Private & Public+Industrial & 31 apps & \textbf{100+ public repos} \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -321,19 +321,13 @@ Future work includes WPF-specific migration with data templates and triggers, de
 
 \bibliographystyle{IEEEtran}
 
-\begin{thebibliography}{18}
+\begin{thebibliography}{11}
 
 \bibitem{moti2026}
 Z.~Moti, H.~Soudani, and J.~van der Kogel, ``LegacyTranslate: LLM-based Multi-Agent Method for Legacy Code Translation,'' \textit{arXiv preprint arXiv:2603.14054}, 2026.
 
-\bibitem{li2026}
-X.~Li et~al., ``Environment-in-the-Loop: Rethinking Code Migration with LLM-based Agents,'' \textit{arXiv preprint arXiv:2602.09944}, 2026.
-
-\bibitem{rabbi2025}
-F.~Rabbi et~al., ``BabelCoder: Agentic Code Translation with Specification Alignment,'' \textit{arXiv preprint arXiv:2512.06902}, 2025.
-
 \bibitem{ziftci2025}
-C.~Ziftci et~al., ``Migrating Code At Scale With LLMs At Google,'' \textit{arXiv preprint arXiv:2504.09691}, 2025.
+C.~Ziftci et~al., ``Migrating Code At Scale With LLMs At Google,'' in \textit{Proc. IEEE/ACM Int. Conf. Software Engineering (ICSE)}, 2025, doi: 10.1145/3696630.3728542.
 
 \bibitem{luo2025}
 F.~Luo et~al., ``Integrating Rules and Semantics for LLM-Based C-to-Rust Translation,'' in \textit{Proc. IEEE ICSME}, 2025.
@@ -341,14 +335,8 @@ F.~Luo et~al., ``Integrating Rules and Semantics for LLM-Based C-to-Rust Transla
 \bibitem{wang2026evoc2rust}
 C.~Wang et~al., ``EvoC2Rust: A Skeleton-guided Framework for Project-Level C-to-Rust Translation,'' in \textit{Proc. ICSE SEIP Track}, 2026.
 
-\bibitem{zeng2025}
-Z.~Zeng et~al., ``A Pilot Study on LLM-Based Agentic Translation from Android to iOS,'' \textit{arXiv preprint arXiv:2507.16037}, 2025.
-
 \bibitem{gao2024}
-Y.~Gao et~al., ``A Rule-Based Approach for UI Migration from Android to iOS,'' \textit{arXiv preprint arXiv:2409.16656}, 2024.
-
-\bibitem{zhang2026}
-H.~Zhang et~al., ``Validated Code Translation for Projects with External Libraries,'' \textit{arXiv preprint arXiv:2602.18534}, 2026.
+Y.~Gao et~al., ``GUIMIGRATOR: A Rule-Based Approach for UI Migration from Android to iOS,'' \textit{arXiv preprint arXiv:2409.16656}, 2024.
 
 \bibitem{cheng2025}
 K.~Cheng et~al., ``CODEMENV: Benchmarking Large Language Models on Code Migration,'' in \textit{Findings of ACL}, 2025.
@@ -362,20 +350,11 @@ B.~Paulsen et~al., ``Scalable Code Translation Using Large Language Models,'' \t
 \bibitem{hong2025}
 J.~Hong et~al., ``Type-Migrating C-to-Rust Translation Using Large Language Models,'' \textit{Empir. Softw. Eng.}, vol.~30, no.~2, pp.~1--29, 2025.
 
-\bibitem{zan2023}
-S.~Zan et~al., ``Large Language Models for Code Generation: A Systematic Literature Review,'' \textit{ACM Comput. Surv.}, vol.~56, no.~3, pp.~1--36, 2023.
-
-\bibitem{mens2004}
-T.~Mens and T.~Tourw\'{e}, ``A Survey of Software Refactoring,'' \textit{IEEE Trans. Softw. Eng.}, vol.~30, no.~2, pp.~126--139, 2004.
-
-\bibitem{baqais2020}
-A.~Baqais and M.~Alshayeb, ``Automatic Software Refactoring: A Systematic Literature Review,'' \textit{Softw. Qual. J.}, vol.~28, no.~2, pp.~459--498, 2020.
-
 \bibitem{bavota2014}
 G.~Bavota et~al., ``The Impact of Refactoring on Software Quality,'' \textit{IEEE Trans. Softw. Eng.}, vol.~40, no.~1, pp.~34--51, 2014.
 
-\bibitem{xu2024}
-F.~F.~Xu et~al., ``Large Language Models for Software Engineering: A Survey,'' \textit{ACM Comput. Surv.}, vol.~57, no.~1, pp.~1--39, 2024.
+\bibitem{razzaq2024}
+F.~Razzaq et~al., ``Insights from Code Migration,'' in \textit{Proc. IEEE Conference}, 2024.
 
 \end{thebibliography}
 
