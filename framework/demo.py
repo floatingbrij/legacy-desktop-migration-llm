@@ -194,8 +194,8 @@ def demo_full_experiment():
         for app in apps:
             try:
                 metrics = pipeline.migrate_file(app["designer"], app.get("code_behind"))
-                status = f"{GREEN}OK{RESET}" if metrics.compilation_success > 70 else f"{RED}ISSUES{RESET}"
-                print(f"  {app['name']:30s} CSR={metrics.compilation_success:5.1f}%  MC={metrics.migration_completeness:5.1f}%  {status}")
+                status = f"{GREEN}OK{RESET}" if metrics.csr > 70 else f"{RED}ISSUES{RESET}"
+                print(f"  {app['name']:30s} CSR={metrics.csr:5.1f}%  MC={metrics.mc:5.1f}%  {status}")
             except Exception as e:
                 print(f"  {app['name']:30s} {RED}ERROR: {e}{RESET}")
     
