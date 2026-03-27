@@ -1,0 +1,296 @@
+{
+  "id": "SimpleNotepad.NotepadForm",
+  "class_name": "NotepadForm",
+  "namespace": "SimpleNotepad",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "NotepadForm_menuStrip1",
+      "control_category": "menu",
+      "original_type": "System.Windows.Forms.MenuStrip",
+      "name": "menuStrip1",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "menuStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "dock": "DockStyle.Top"
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "NotepadForm_toolStrip1",
+      "control_category": "toolbar",
+      "original_type": "System.Windows.Forms.ToolStrip",
+      "name": "toolStrip1",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "toolStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "NotepadForm_rtbEditor",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.RichTextBox",
+      "name": "rtbEditor",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "rtbEditor",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "text_changed",
+          "handler_name": "rtbEditor_TextChanged",
+          "handler_body": "lblStatus.Text = $\"Characters: {rtbEditor.Text.Length}\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "dock": "DockStyle.Fill"
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "NotepadForm_statusStrip1",
+      "control_category": "status_bar",
+      "original_type": "System.Windows.Forms.StatusStrip",
+      "name": "statusStrip1",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "statusStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "dock": "DockStyle.Bottom"
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "NotepadForm_btnNew",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnNew",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "New",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnNew",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNew_Click",
+          "handler_body": "if (MessageBox.Show(\"New document?\", \"Confirm\", MessageBoxButtons.YesNo) == DialogResult.Yes)\n                rtbEditor.Text = \"\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 50,
+        "width": 60,
+        "height": 25
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "NotepadForm_btnOpen",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnOpen",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Open",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnOpen",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnOpen_Click",
+          "handler_body": "OpenFileDialog ofd = new OpenFileDialog();\n            ofd.Filter = \"Text files|*.txt\";\n            if (ofd.ShowDialog() == DialogResult.OK)\n                rtbEditor.Text = System.IO.File.ReadAllText(ofd.FileName);",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 75,
+        "y": 50,
+        "width": 60,
+        "height": 25
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "NotepadForm_btnSave",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnSave",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Save",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnSave",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnSave_Click",
+          "handler_body": "SaveFileDialog sfd = new SaveFileDialog();\n            sfd.Filter = \"Text files|*.txt\";\n            if (sfd.ShowDialog() == DialogResult.OK)\n                System.IO.File.WriteAllText(sfd.FileName, rtbEditor.Text);",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 140,
+        "y": 50,
+        "width": 60,
+        "height": 25
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "NotepadForm_lblStatus",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblStatus",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Ready",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblStatus",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 420,
+        "width": 200,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "NotepadForm_cmbFontSize",
+      "control_category": "dropdown",
+      "original_type": "System.Windows.Forms.ComboBox",
+      "name": "cmbFontSize",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "cmbFontSize",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "selection_changed",
+          "handler_name": "cmbFontSize_Changed",
+          "handler_body": "float size = float.Parse(cmbFontSize.SelectedItem.ToString());\n            rtbEditor.Font = new System.Drawing.Font(rtbEditor.Font.FontFamily, size);",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 220,
+        "y": 50,
+        "width": 80,
+        "height": 25
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "NotepadForm_chkWordWrap",
+      "control_category": "checkbox",
+      "original_type": "System.Windows.Forms.CheckBox",
+      "name": "chkWordWrap",
+      "parent_id": "NotepadForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Word Wrap",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "chkWordWrap",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "checked_changed",
+          "handler_name": "chkWordWrap_Changed",
+          "handler_body": "rtbEditor.WordWrap = chkWordWrap.Checked;",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 310,
+        "y": 52,
+        "width": 100,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 10,
+  "total_events": 6,
+  "complexity_tier": "medium"
+}

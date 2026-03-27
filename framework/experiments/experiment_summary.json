@@ -1,0 +1,128 @@
+{
+  "rule_only": {
+    "total_forms": 12,
+    "total_controls": 165,
+    "total_controls_migrated": 143,
+    "total_events": 82,
+    "total_events_migrated": 0,
+    "avg_csr": 63.22083333333334,
+    "avg_mc": 88.1954156954157,
+    "avg_ups": 90.66666666666667,
+    "avg_trr": 2640.0,
+    "avg_ed": 3.4858333333333333,
+    "min_csr": 52.75,
+    "max_csr": 75.6,
+    "min_mc": 66.66666666666666,
+    "max_mc": 100.0,
+    "by_tier": {
+      "large": {
+        "count": 3,
+        "avg_csr": 52.75,
+        "avg_mc": 82.82051282051282,
+        "avg_ups": 85.0,
+        "avg_trr": 4815.0,
+        "avg_ed": 3.9599999999999995
+      },
+      "medium": {
+        "count": 4,
+        "avg_csr": 65.6,
+        "avg_mc": 82.47086247086247,
+        "avg_ups": 92.0,
+        "avg_trr": 2362.5,
+        "avg_ed": 2.9050000000000002
+      },
+      "small": {
+        "count": 5,
+        "avg_csr": 67.6,
+        "avg_mc": 96.0,
+        "avg_ups": 93.0,
+        "avg_trr": 1557.0,
+        "avg_ed": 3.6660000000000004
+      }
+    }
+  },
+  "single_agent": {
+    "total_forms": 12,
+    "total_controls": 165,
+    "total_controls_migrated": 160,
+    "total_events": 82,
+    "total_events_migrated": 82,
+    "avg_csr": 76.17833333333333,
+    "avg_mc": 97.01282051282051,
+    "avg_ups": 96.5,
+    "avg_trr": 4106.666666666667,
+    "avg_ed": 1.1491666666666667,
+    "min_csr": 40,
+    "max_csr": 93.0,
+    "min_mc": 80.0,
+    "max_mc": 100.0,
+    "by_tier": {
+      "large": {
+        "count": 3,
+        "avg_csr": 57.99666666666667,
+        "avg_mc": 94.71794871794873,
+        "avg_ups": 94.0,
+        "avg_trr": 7490.0,
+        "avg_ed": 1.6433333333333333
+      },
+      "medium": {
+        "count": 4,
+        "avg_csr": 75.5,
+        "avg_mc": 100.0,
+        "avg_ups": 97.0,
+        "avg_trr": 3675.0,
+        "avg_ed": 1.325
+      },
+      "small": {
+        "count": 5,
+        "avg_csr": 87.63,
+        "avg_mc": 96.0,
+        "avg_ups": 97.6,
+        "avg_trr": 2422.0,
+        "avg_ed": 0.712
+      }
+    }
+  },
+  "hybrid": {
+    "total_forms": 12,
+    "total_controls": 165,
+    "total_controls_migrated": 160,
+    "total_events": 82,
+    "total_events_migrated": 82,
+    "avg_csr": 87.11833333333334,
+    "avg_mc": 97.01282051282051,
+    "avg_ups": 100.0,
+    "avg_trr": 5866.666666666667,
+    "avg_ed": 0.32749999999999996,
+    "min_csr": 48.0,
+    "max_csr": 97.85,
+    "min_mc": 80.0,
+    "max_mc": 100.0,
+    "by_tier": {
+      "large": {
+        "count": 3,
+        "avg_csr": 71.66666666666667,
+        "avg_mc": 94.71794871794873,
+        "avg_ups": 100.0,
+        "avg_trr": 10700.0,
+        "avg_ed": 0.6233333333333333
+      },
+      "medium": {
+        "count": 4,
+        "avg_csr": 86.005,
+        "avg_mc": 100.0,
+        "avg_ups": 100.0,
+        "avg_trr": 5250.0,
+        "avg_ed": 0.515
+      },
+      "small": {
+        "count": 5,
+        "avg_csr": 97.28,
+        "avg_mc": 96.0,
+        "avg_ups": 100.0,
+        "avg_trr": 3460.0,
+        "avg_ed": 0.0
+      }
+    }
+  }
+}

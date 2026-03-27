@@ -1,0 +1,727 @@
+{
+  "id": "DashboardApp.DashboardForm",
+  "class_name": "DashboardForm",
+  "namespace": "DashboardApp",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "DashboardForm_menuStrip1",
+      "control_category": "menu",
+      "original_type": "System.Windows.Forms.MenuStrip",
+      "name": "menuStrip1",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "menuStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "DashboardForm_panelTop",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelTop",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelTop",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "width": 1200,
+        "height": 80,
+        "dock": "DockStyle.Top"
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_panelLeft",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelLeft",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelLeft",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "width": 250,
+        "height": 720,
+        "dock": "DockStyle.Left"
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_panelMain",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelMain",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelMain",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "dock": "DockStyle.Fill"
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_lblWelcome",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblWelcome",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Welcome, User",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblWelcome",
+          "category": "data"
+        },
+        {
+          "name": "Font",
+          "value": "Segoe UI,18",
+          "category": "appearance"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 20,
+        "width": 300,
+        "height": 40
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_lblDate",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblDate",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "March 28, 2026",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblDate",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 55,
+        "width": 200,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_btnDashboard",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnDashboard",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Dashboard",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnDashboard",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnDashboard_Click",
+          "handler_body": "LoadDashboard();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 10,
+        "width": 230,
+        "height": 35
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_btnReports",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnReports",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Reports",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnReports",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnReports_Click",
+          "handler_body": "LoadReports();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 50,
+        "width": 230,
+        "height": 35
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_btnUsers",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnUsers",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Users",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnUsers",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnUsers_Click",
+          "handler_body": "LoadUsers();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 90,
+        "width": 230,
+        "height": 35
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_btnSettings",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnSettings",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Settings",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnSettings",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnSettings_Click",
+          "handler_body": "var settings = new SettingsForm();\n            settings.ShowDialog();",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 130,
+        "width": 230,
+        "height": 35
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "DashboardForm_btnLogout",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnLogout",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Logout",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnLogout",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnLogout_Click",
+          "handler_body": "if (MessageBox.Show(\"Logout?\", \"Confirm\", MessageBoxButtons.YesNo) == DialogResult.Yes)\n            {\n                this.Hide();\n                new LoginForm().ShowDialog();\n                this.Close();\n            }",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 650,
+        "width": 230,
+        "height": 35
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "DashboardForm_dgvData",
+      "control_category": "data_grid",
+      "original_type": "System.Windows.Forms.DataGridView",
+      "name": "dgvData",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "dgvData",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "cell_click",
+          "handler_name": "dgvData_CellClick",
+          "handler_body": "UpdateStats();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 10,
+        "width": 700,
+        "height": 400
+      },
+      "migration_difficulty": "complex"
+    },
+    {
+      "id": "DashboardForm_picChart",
+      "control_category": "image",
+      "original_type": "System.Windows.Forms.PictureBox",
+      "name": "picChart",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "picChart",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 420,
+        "width": 700,
+        "height": 250
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_panelStats",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelStats",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelStats",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 720,
+        "y": 10,
+        "width": 220,
+        "height": 660
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_lblStat1",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblStat1",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Total Users: 0",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblStat1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 10,
+        "width": 200,
+        "height": 25
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_lblStat2",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblStat2",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Revenue: $0",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblStat2",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 40,
+        "width": 200,
+        "height": 25
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_lblStat3",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblStat3",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Orders: 0",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblStat3",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 70,
+        "width": 200,
+        "height": 25
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_lblStat4",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblStat4",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Pending: 0",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblStat4",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 100,
+        "width": 200,
+        "height": 25
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_dtpStart",
+      "control_category": "date_picker",
+      "original_type": "System.Windows.Forms.DateTimePicker",
+      "name": "dtpStart",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "dtpStart",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "value_changed",
+          "handler_name": "dtpStart_Changed",
+          "handler_body": "FilterByDate();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 140,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_dtpEnd",
+      "control_category": "date_picker",
+      "original_type": "System.Windows.Forms.DateTimePicker",
+      "name": "dtpEnd",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "dtpEnd",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "value_changed",
+          "handler_name": "dtpEnd_Changed",
+          "handler_body": "FilterByDate();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 170,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_btnRefresh",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnRefresh",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Refresh",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnRefresh",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnRefresh_Click",
+          "handler_body": "progressBar1.Value = 0;\n            BackgroundWorker bw = new BackgroundWorker();\n            bw.DoWork += (s, ev) => { for (int i = 0; i <= 100; i += 10) { Thread.Sleep(100); this.Invoke((Action)(() => progressBar1.Value = i)); } };\n            bw.RunWorkerCompleted += (s, ev) => { LoadDashboard(); };\n            bw.RunWorkerAsync();",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 200,
+        "width": 200,
+        "height": 30
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "DashboardForm_progressBar1",
+      "control_category": "progress",
+      "original_type": "System.Windows.Forms.ProgressBar",
+      "name": "progressBar1",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "progressBar1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 640,
+        "width": 200,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_refreshTimer",
+      "control_category": "timer",
+      "original_type": "System.Windows.Forms.Timer",
+      "name": "refreshTimer",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "refreshTimer",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "timer_tick",
+          "handler_name": "refreshTimer_Tick",
+          "handler_body": "LoadDashboard();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_cmbView",
+      "control_category": "dropdown",
+      "original_type": "System.Windows.Forms.ComboBox",
+      "name": "cmbView",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "cmbView",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "selection_changed",
+          "handler_name": "cmbView_Changed",
+          "handler_body": "ChangeView(cmbView.SelectedItem.ToString());",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 240,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "DashboardForm_chkAutoRefresh",
+      "control_category": "checkbox",
+      "original_type": "System.Windows.Forms.CheckBox",
+      "name": "chkAutoRefresh",
+      "parent_id": "DashboardForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Auto-refresh",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "chkAutoRefresh",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "checked_changed",
+          "handler_name": "chkAutoRefresh_Changed",
+          "handler_body": "refreshTimer.Enabled = chkAutoRefresh.Checked;",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 270,
+        "width": 200,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 25,
+  "total_events": 12,
+  "complexity_tier": "large"
+}

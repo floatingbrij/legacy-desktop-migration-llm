@@ -1,0 +1,734 @@
+{
+  "id": "InventorySystem.InventoryForm",
+  "class_name": "InventoryForm",
+  "namespace": "InventorySystem",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "InventoryForm_menuStrip1",
+      "control_category": "menu",
+      "original_type": "System.Windows.Forms.MenuStrip",
+      "name": "menuStrip1",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "menuStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "InventoryForm_toolStrip1",
+      "control_category": "toolbar",
+      "original_type": "System.Windows.Forms.ToolStrip",
+      "name": "toolStrip1",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "toolStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "InventoryForm_statusStrip1",
+      "control_category": "status_bar",
+      "original_type": "System.Windows.Forms.StatusStrip",
+      "name": "statusStrip1",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "statusStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "InventoryForm_tabMain",
+      "control_category": "tab_container",
+      "original_type": "System.Windows.Forms.TabControl",
+      "name": "tabMain",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "tabMain",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 60,
+        "width": 1000,
+        "height": 580
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "InventoryForm_dgvProducts",
+      "control_category": "data_grid",
+      "original_type": "System.Windows.Forms.DataGridView",
+      "name": "dgvProducts",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "dgvProducts",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "cell_click",
+          "handler_name": "dgvProducts_CellClick",
+          "handler_body": "if (dgvProducts.CurrentRow != null)\n            {\n                txtProductName.Text = dgvProducts.CurrentRow.Cells[0].Value.ToString();\n                cmbCategory.Text = dgvProducts.CurrentRow.Cells[1].Value.ToString();\n                nudPrice.Value = Convert.ToDecimal(dgvProducts.CurrentRow.Cells[2].Value);\n                nudQuantity.Value = Convert.ToInt32(dgvProducts.CurrentRow.Cells[3].Value);\n            }",
+          "complexity": "simple"
+        },
+        {
+          "event_type": "cell_value_changed",
+          "handler_name": "dgvProducts_CellValueChanged",
+          "handler_body": "UpdateTotals();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 30,
+        "width": 970,
+        "height": 350
+      },
+      "migration_difficulty": "complex"
+    },
+    {
+      "id": "InventoryForm_panelDetails",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelDetails",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelDetails",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 400,
+        "width": 970,
+        "height": 170
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_lblProductName",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblProductName",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Product:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblProductName",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 10,
+        "width": 70,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_txtProductName",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.TextBox",
+      "name": "txtProductName",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "txtProductName",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "text_changed",
+          "handler_name": "txtProductName_TextChanged",
+          "handler_body": "btnAdd.Enabled = txtProductName.Text.Length > 0;",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 100,
+        "y": 7,
+        "width": 250,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_lblCategory",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblCategory",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Category:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblCategory",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 40,
+        "width": 70,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_cmbCategory",
+      "control_category": "dropdown",
+      "original_type": "System.Windows.Forms.ComboBox",
+      "name": "cmbCategory",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "cmbCategory",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "selection_changed",
+          "handler_name": "cmbCategory_Changed",
+          "handler_body": "FilterByCategory(cmbCategory.SelectedItem?.ToString());",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 100,
+        "y": 37,
+        "width": 250,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_lblPrice",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblPrice",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Price:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblPrice",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 370,
+        "y": 10,
+        "width": 50,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_nudPrice",
+      "control_category": "numeric_input",
+      "original_type": "System.Windows.Forms.NumericUpDown",
+      "name": "nudPrice",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "nudPrice",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "value_changed",
+          "handler_name": "nudPrice_ValueChanged",
+          "handler_body": "UpdateTotals();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 430,
+        "y": 7,
+        "width": 120,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_lblQuantity",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblQuantity",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Quantity:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblQuantity",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 370,
+        "y": 40,
+        "width": 50,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_nudQuantity",
+      "control_category": "numeric_input",
+      "original_type": "System.Windows.Forms.NumericUpDown",
+      "name": "nudQuantity",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "nudQuantity",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 430,
+        "y": 37,
+        "width": 120,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_btnAdd",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnAdd",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Add Product",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnAdd",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnAdd_Click",
+          "handler_body": "dgvProducts.Rows.Add(txtProductName.Text, cmbCategory.Text, nudPrice.Value, nudQuantity.Value, DateTime.Now);\n            UpdateTotals();\n            ClearFields();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 580,
+        "y": 7,
+        "width": 110,
+        "height": 28
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_btnUpdate",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnUpdate",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Update",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnUpdate",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnUpdate_Click",
+          "handler_body": "if (dgvProducts.CurrentRow != null)\n            {\n                dgvProducts.CurrentRow.Cells[0].Value = txtProductName.Text;\n                dgvProducts.CurrentRow.Cells[1].Value = cmbCategory.Text;\n                dgvProducts.CurrentRow.Cells[2].Value = nudPrice.Value;\n                UpdateTotals();\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 580,
+        "y": 40,
+        "width": 110,
+        "height": 28
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_btnDelete",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnDelete",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Delete",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnDelete",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnDelete_Click",
+          "handler_body": "if (dgvProducts.CurrentRow != null && MessageBox.Show(\"Delete?\", \"Confirm\", MessageBoxButtons.YesNo) == DialogResult.Yes)\n            {\n                dgvProducts.Rows.Remove(dgvProducts.CurrentRow);\n                UpdateTotals();\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 700,
+        "y": 7,
+        "width": 90,
+        "height": 28
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_btnExport",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnExport",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Export CSV",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnExport",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnExport_Click",
+          "handler_body": "SaveFileDialog sfd = new SaveFileDialog();\n            sfd.Filter = \"CSV|*.csv\";\n            if (sfd.ShowDialog() == DialogResult.OK)\n            {\n                using (var writer = new System.IO.StreamWriter(sfd.FileName))\n                {\n                    foreach (DataGridViewRow row in dgvProducts.Rows)\n                        writer.WriteLine(string.Join(\",\", row.Cells.Cast<DataGridViewCell>().Select(c => c.Value)));\n                }\n            }",
+          "complexity": "complex"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 700,
+        "y": 40,
+        "width": 90,
+        "height": 28
+      },
+      "migration_difficulty": "complex"
+    },
+    {
+      "id": "InventoryForm_txtSearch",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.TextBox",
+      "name": "txtSearch",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "txtSearch",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "text_changed",
+          "handler_name": "txtSearch_TextChanged",
+          "handler_body": "foreach (DataGridViewRow row in dgvProducts.Rows)\n            {\n                row.Visible = row.Cells[0].Value?.ToString().Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ?? false;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 800,
+        "y": 7,
+        "width": 170,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_lblSearch",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblSearch",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Search:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblSearch",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 800,
+        "y": 40,
+        "width": 170,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_chkLowStock",
+      "control_category": "checkbox",
+      "original_type": "System.Windows.Forms.CheckBox",
+      "name": "chkLowStock",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Low Stock Only",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "chkLowStock",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "checked_changed",
+          "handler_name": "chkLowStock_Changed",
+          "handler_body": "foreach (DataGridViewRow row in dgvProducts.Rows)\n            {\n                if (chkLowStock.Checked)\n                    row.Visible = Convert.ToInt32(row.Cells[3].Value) < 10;\n                else\n                    row.Visible = true;\n            }",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 800,
+        "y": 60,
+        "width": 120,
+        "height": 20
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "InventoryForm_lblTotal",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblTotal",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Total: 0 items",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblTotal",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 660,
+        "width": 200,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_lblValue",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblValue",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Total Value: $0.00",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblValue",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 300,
+        "y": 660,
+        "width": 200,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_progressBar1",
+      "control_category": "progress",
+      "original_type": "System.Windows.Forms.ProgressBar",
+      "name": "progressBar1",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "progressBar1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 650,
+        "y": 660,
+        "width": 350,
+        "height": 15
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_autoRefreshTimer",
+      "control_category": "timer",
+      "original_type": "System.Windows.Forms.Timer",
+      "name": "autoRefreshTimer",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "autoRefreshTimer",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "timer_tick",
+          "handler_name": "autoRefreshTimer_Tick",
+          "handler_body": "UpdateTotals();\n            lblTotal.Text = $\"Total: {dgvProducts.Rows.Count} items\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "InventoryForm_dtpDate",
+      "control_category": "date_picker",
+      "original_type": "System.Windows.Forms.DateTimePicker",
+      "name": "dtpDate",
+      "parent_id": "InventoryForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "dtpDate",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 580,
+        "y": 70,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 26,
+  "total_events": 12,
+  "complexity_tier": "large"
+}

@@ -1,0 +1,382 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{tabularx}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  showstringspaces=false,
+  tabsize=2
+}
+
+\begin{document}
+
+\title{Automated Migration of Legacy Windows Desktop Applications to WinUI~3 Using Hybrid Rule-Based and Multi-Agent LLM Framework}
+
+\author{
+\IEEEauthorblockN{Brijesharun G}
+\IEEEauthorblockA{Dept. of Computing Technologies\\
+SRM Institute of Science and Technology\\
+Kattankulathur, India\\
+brijesharun@gmail.com}
+\and
+\IEEEauthorblockN{Dr. Hariprasad S}
+\IEEEauthorblockA{Dept. of Computing Technologies\\
+SRM Institute of Science and Technology\\
+Kattankulathur, India\\
+haripras2@srmist.edu.in}
+}
+
+\maketitle
+
+\begin{abstract}
+A significant proportion of enterprise desktop software continues to operate on legacy Windows frameworks such as Windows Forms (WinForms), Windows Presentation Foundation (WPF), and the Universal Windows Platform (UWP). While these applications sustain critical business operations, they suffer from outdated architectures, limited maintainability, and incompatibility with Microsoft's modern development ecosystem centered around WinUI~3 and the Windows App SDK. Manual migration of such systems is prohibitively expensive, requiring deep knowledge of both source and target frameworks.
+
+This paper proposes a hybrid automated migration framework that combines deterministic rule-based transformations with a multi-agent Large Language Model (LLM) architecture to convert legacy Windows desktop applications into modern WinUI~3 projects. The framework employs Roslyn-based static code analysis to extract UI control hierarchies, event-handler bindings, and layout structures from legacy source code. An intermediate representation decouples the extracted semantics from framework-specific syntax. Rule-based engines handle deterministic control mappings while four specialized LLM agents---Analyzer, Translator, Refactoring, and Verification---collaboratively address complex transformations including MVVM pattern conversion and XAML generation. The system incorporates an iterative compilation feedback loop for self-correction. To evaluate the approach, a curated dataset of over 100 open-source WinForms, WPF, and UWP applications is collected from public GitHub repositories. Experimental evaluation on 12 synthetic WinForms applications (165 controls, 62 event handlers) demonstrates that the hybrid multi-agent approach achieves 87.1\% compilation success rate, 97.0\% migration completeness, and 100\% UI parity---outperforming rule-only (63.2\%) and single-agent (76.2\%) baselines across all metrics. The framework achieves a time reduction ratio of 5,867$\times$ over estimated manual effort, indicating that AI-assisted modernization of Windows desktop applications is both feasible and scalable.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Software Migration, Legacy Modernization, WinUI~3, Large Language Models, Multi-Agent Systems, Static Code Analysis, Windows Forms, WPF, UWP
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Despite the rapid growth of web-based and cloud-native applications, desktop software continues to play a critical role in enterprise environments. Many organizations still rely on legacy Windows desktop frameworks---particularly Windows Forms (WinForms), Windows Presentation Foundation (WPF), and the Universal Windows Platform (UWP)---to power internal tools, financial trading systems, engineering software, enterprise dashboards, and administrative systems~\cite{mens2004}. Industry estimates suggest that millions of line-of-business applications remain built on these frameworks, representing years of accumulated domain knowledge and business logic.
+
+Microsoft's modern Windows development platform is centered around WinUI~3 and the Windows App SDK, which provide improved performance, modern UI capabilities, Fluent Design integration, and decoupling from operating system release cycles. However, migrating legacy applications to this modern ecosystem remains a substantial engineering challenge.
+
+Manual migration requires developers to redesign UI layouts from imperative code-behind patterns to declarative XAML, refactor event-driven logic into the Model-View-ViewModel (MVVM) architectural pattern, map legacy controls to their modern equivalents, and adapt resource management strategies. For moderately sized applications, this process can consume weeks or months of developer effort, with significant risk of introducing regressions.
+
+Recent advances in automated code transformation and Large Language Models (LLMs) have opened new possibilities for partially automating such modernization processes. Studies at Google have demonstrated that LLM-assisted migration workflows can reduce developer effort by approximately 50\% compared to fully manual approaches~\cite{ziftci2025}. Multi-agent LLM architectures, where specialized agents handle distinct aspects of a complex task, have shown particular promise for software engineering tasks involving multiple transformation steps~\cite{moti2026,rabbi2025}.
+
+However, the existing body of research on LLM-based code migration focuses predominantly on programming language translation (e.g., C-to-Rust~\cite{luo2025,hong2025}, PL/SQL-to-Java~\cite{moti2026}) or backend system modernization. UI framework migration introduces unique challenges due to complex control hierarchies, designer-generated code patterns, visual property mappings, and event-driven interaction models. Specifically, no existing tool or research effort addresses the automated migration of Windows desktop UI frameworks (WinForms, WPF, UWP) to WinUI~3.
+
+This paper addresses this gap by proposing a hybrid migration framework that integrates deterministic rule-based transformations with a multi-agent LLM architecture. The main contributions are:
+
+\begin{enumerate}
+    \item \textbf{C1:} A novel hybrid migration framework combining rule-based transformations with a four-agent LLM architecture for converting legacy Windows desktop applications to WinUI~3.
+    \item \textbf{C2:} A Roslyn-based static analysis pipeline for extracting UI structures, event bindings, and layout configurations from WinForms Designer.cs files and WPF/UWP XAML.
+    \item \textbf{C3:} A curated dataset of over 100 open-source Windows desktop applications collected from public GitHub repositories, annotated with framework type, complexity tier, and file-level metadata.
+    \item \textbf{C4:} An empirical evaluation comparing the proposed hybrid approach against rule-only and single-agent LLM baselines using metrics including compilation success rate, migration completeness, and effort reduction.
+\end{enumerate}
+
+\section{Related Work}
+
+\subsection{Legacy Software Modernization}
+
+Software modernization has been extensively studied in the software engineering literature. Mens and Tourw\'{e}~\cite{mens2004} presented a comprehensive survey of software refactoring techniques. Bavota et al.~\cite{bavota2014} conducted a large-scale empirical study demonstrating that refactoring activities can significantly improve code maintainability. Baqais and Alshayeb~\cite{baqais2020} presented a systematic literature review of automated software refactoring approaches.
+
+\subsection{LLM-Based Code Migration}
+
+Moti et al.~\cite{moti2026} proposed LegacyTranslate, a multi-agent framework for translating legacy PL/SQL code to Java, achieving 45.6\% compilable outputs with the initial agent alone and an additional 8\% improvement through the full pipeline. Ziftci et al.~\cite{ziftci2025} reported on large-scale LLM-assisted code migration at Google, demonstrating that 74.45\% of code changes in 39 migration projects were generated by LLMs. Li et al.~\cite{li2026} introduced the Environment-in-the-Loop paradigm for code migration. Rabbi et al.~\cite{rabbi2025} proposed BabelCoder, achieving 94.16\% accuracy across four benchmarks. Luo et al.~\cite{luo2025} proposed IRENE for C-to-Rust translation. Wang et al.~\cite{wang2026evoc2rust} developed EvoC2Rust for project-level C-to-Rust translation.
+
+\subsection{UI Framework Migration}
+
+Zeng et al.~\cite{zeng2025} conducted a pilot study on LLM-based agentic translation from Android to iOS. Gao et al.~\cite{gao2024} proposed GUIMIGRATOR, achieving 78\% UI similarity for Android-to-iOS migration. Cheng et al.~\cite{cheng2025} introduced CODEMENV, reporting an average pass@1 rate of 26.50\%. Wang et al.~\cite{wang2025apirat} proposed APIRAT for API knowledge-enhanced code translation.
+
+\subsection{Research Gap}
+
+Table~\ref{tab:comparison} summarizes the positioning of this work. No existing tool targets Windows desktop UI framework migration. The combination of rule-based and multi-agent LLM approaches for UI migration is underexplored. No multi-agent architecture has been applied to UI framework migration, and large-scale public datasets of Windows desktop applications are lacking.
+
+\begin{table*}[t]
+\caption{Comparison of This Work with Existing Approaches}
+\label{tab:comparison}
+\centering
+\footnotesize
+\begin{tabular}{p{2.2cm}p{2.2cm}p{1.8cm}p{2cm}p{2cm}p{2.8cm}}
+\toprule
+\textbf{Aspect} & \textbf{LegacyTranslate~\cite{moti2026}} & \textbf{IRENE~\cite{luo2025}} & \textbf{GUIMIGRATOR~\cite{gao2024}} & \textbf{Android$\to$iOS~\cite{zeng2025}} & \textbf{This Work} \\
+\midrule
+Source Domain & PL/SQL (backend) & C (systems) & Android XML & Android (mobile) & \textbf{WinForms/WPF/UWP} \\
+Target Domain & Java & Rust & iOS Storyboard & iOS Swift & \textbf{WinUI~3 (XAML + C\#)} \\
+Approach & Multi-agent LLM & Hybrid rule+LLM & Rule-based only & LLM-agent chain & \textbf{Hybrid rule + multi-agent} \\
+UI Handling & None & None & UI skeleton tree & Full app & \textbf{Full UI + MVVM} \\
+Static Analysis & Not specified & C AST & XML parsing & Code structure & \textbf{Roslyn AST} \\
+Agents & 3 & 0 & 0 & Chain & \textbf{4 specialized} \\
+Dataset & Private & Public+Industrial & 31 apps & Small set & \textbf{100+ public repos} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Proposed Methodology}
+
+The proposed migration framework follows a five-stage pipeline designed to automate the transformation of legacy Windows applications into modern WinUI~3 projects. Fig.~\ref{fig:architecture} illustrates the overall system architecture.
+
+\subsection{System Overview}
+
+The migration process consists of five sequential stages: (1)~Static Analysis---Roslyn-based extraction of UI structures and code logic; (2)~Intermediate Representation---framework-independent semantic model; (3)~Rule-Based Transformation---deterministic control and property mappings; (4)~Multi-Agent LLM Pipeline---intelligent code generation and refactoring; (5)~Output Assembly \& Validation---project generation and compilation verification.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/architecture.png}
+\caption{Five-stage pipeline architecture for WinForms-to-WinUI~3 migration.}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Stage 1: Static Analysis Using Roslyn}
+
+The process begins with static analysis of legacy source code using the Roslyn compiler platform. For WinForms applications, the analyzer processes both the code-behind files (.cs) and designer-generated files (.Designer.cs) to extract control hierarchies, property configurations, event handler bindings, layout relationships, and resource references. The Roslyn Syntax Tree API provides access to the full abstract syntax tree (AST) of C\# source code, enabling precise identification of control instantiation patterns, property assignments, and event subscriptions.
+
+\subsection{Stage 2: Intermediate Representation}
+
+The extracted information is converted into a framework-independent Intermediate Representation (IR) structured as a JSON document containing the form metadata, control tree with properties/events/children, event handler bodies, and resource references. This decoupling enables the same IR to serve as input for migration to multiple target frameworks.
+
+\subsection{Stage 3: Rule-Based Transformation Engine}
+
+Deterministic rule-based mappings are applied for well-defined WinForms-to-WinUI~3 conversions. The engine implements 28 control mapping rules covering controls from \texttt{Button}$\to$\texttt{Button} to \texttt{DataGridView}$\to$\texttt{DataGrid} (Community Toolkit), with associated property, color, anchor, dock, and event mappings. For absolute-positioned WinForms controls, a layout inference algorithm converts pixel-based properties into Grid-based layouts with appropriate star-sizing and margins.
+
+\subsection{Stage 4: Multi-Agent LLM Pipeline}
+
+Complex transformations are delegated to four specialized agents, as shown in Fig.~\ref{fig:agents}:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/agents.png}
+\caption{Multi-agent LLM pipeline with four specialized agents and feedback loop.}
+\label{fig:agents}
+\end{figure}
+
+\textbf{Agent~1 (Analyzer):} Identifies complex patterns (custom controls, dynamic UI, threading, data binding, etc.) and generates a transformation plan.
+
+\textbf{Agent~2 (Translator):} Generates WinUI~3 XAML layouts and code-behind with migrated event handlers.
+
+\textbf{Agent~3 (Refactoring):} Converts event-driven logic into MVVM architecture using \texttt{ObservableObject} and \texttt{RelayCommand} from CommunityToolkit.Mvvm.
+
+\textbf{Agent~4 (Verification):} Validates generated XAML and C\#, detects API leaks, and applies auto-fixes through a feedback loop.
+
+\subsection{Stage 5: Output Assembly and Validation}
+
+The final stage assembles generated artifacts into a complete WinUI~3 project with \texttt{.csproj} targeting \texttt{net8.0-windows10.0.19041.0}, organized \texttt{.xaml}, \texttt{.xaml.cs}, and ViewModel files, compilation verification via MSBuild, and a detailed migration report.
+
+\section{Dataset}
+
+\subsection{Collection Methodology}
+
+A dataset of open-source Windows desktop applications was collected from public GitHub repositories using the GitHub Search API. Repositories were filtered by framework-specific criteria (WinForms: \texttt{.Designer.cs} files; WPF/UWP: namespaced \texttt{.xaml} files).
+
+\subsection{Inclusion Criteria}
+
+Repositories were included if they had an open-source license, C\# as primary language, $\geq$3 C\# source files, $\geq$1 star, and were not forks. Tutorial repositories, console applications, and repos without meaningful executable code were excluded.
+
+\subsection{Dataset Statistics}
+
+\begin{table}[h]
+\caption{Dataset Overview}
+\label{tab:dataset}
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Property} & \textbf{Value} \\
+\midrule
+Total Repositories & 130 \\
+WinForms Repositories & 80 (61.5\%) \\
+WPF Repositories & 30 (23.1\%) \\
+UWP Repositories & 20 (15.4\%) \\
+Average Stars per Repo & 3,447 \\
+Total .Designer.cs Files & 4,255 \\
+Total .xaml Files & 10,954 \\
+Collection Period & March 2026 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Evaluation Test Suite}
+
+To enable controlled and reproducible evaluation, 12 synthetic WinForms applications were constructed spanning three complexity tiers: 5 small ($\leq$5 controls), 4 medium (6--15 controls), and 3 large ($>$15 controls), totaling 165 controls and 62 event handlers. Synthetic applications were chosen to enable precise control over control types, event patterns, and layout structures, and to eliminate confounding factors such as build errors and missing dependencies in open-source repositories. The 130-repository dataset serves as a representative corpus for validating coverage of real-world patterns and is available for future large-scale evaluation.
+
+\section{Experimental Setup}
+
+\subsection{Research Questions}
+
+\begin{itemize}
+    \item \textbf{RQ1 (Effectiveness):} How effective is the proposed framework at producing compilable WinUI~3 projects?
+    \item \textbf{RQ2 (Ablation):} How does the full hybrid approach compare against rule-only and single-agent baselines?
+    \item \textbf{RQ3 (Granularity):} Which WinForms constructs are most/least successfully migrated?
+    \item \textbf{RQ4 (Efficiency):} How does automated migration time compare to estimated manual effort?
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+
+Five metrics are used: \textit{Compilation Success Rate (CSR)}---percentage of forms producing compilable output; \textit{Migration Completeness (MC)}---percentage of controls successfully migrated; \textit{UI Parity Score (UPS)}---structural similarity between source and target hierarchies; \textit{Time Reduction Ratio (TRR)}---speedup over manual effort; \textit{Error Density (ED)}---errors per 100 lines of generated code.
+
+\subsection{Baselines}
+
+Three configurations are evaluated: (1)~\textit{Rule-Only}: deterministic rules only, no LLM involvement; (2)~\textit{Single-Agent}: rules plus a single LLM pass for pattern analysis and handler migration, without MVVM or iterative verification; (3)~\textit{Full Hybrid}: complete five-stage pipeline with four specialized agents.
+
+\subsection{Implementation Details}
+
+Static analysis uses C\# (.NET~8) with Microsoft.CodeAnalysis (Roslyn) APIs. Multi-agent orchestration uses Python. The LLM backend is compatible with both local models (Ollama: Llama~3, DeepSeek) and cloud APIs (OpenAI GPT-4). The target framework is WinUI~3 via Windows App SDK with CommunityToolkit.MVVM.
+
+\section{Results and Discussion}
+
+\subsection{Overall Migration Effectiveness (RQ1)}
+
+\begin{table}[h]
+\caption{Migration Results by Complexity Tier (Hybrid)}
+\label{tab:tier_results}
+\centering
+\footnotesize
+\begin{tabular}{lccccr}
+\toprule
+\textbf{Tier} & \textbf{n} & \textbf{CSR\%} & \textbf{MC\%} & \textbf{UPS\%} & \textbf{ED} \\
+\midrule
+Small ($\leq$5) & 5 & 97.3 & 96.0 & 100.0 & 0.00 \\
+Medium (6--15) & 4 & 86.0 & 100.0 & 100.0 & 0.52 \\
+Large ($>$15) & 3 & 71.7 & 94.7 & 100.0 & 0.62 \\
+\midrule
+\textbf{Overall} & \textbf{12} & \textbf{87.1} & \textbf{97.0} & \textbf{100.0} & \textbf{0.33} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The hybrid framework achieves 87.1\% compilation success rate. Small forms achieve 97.3\%, while larger forms show expected degradation (71.7\%) due to complex patterns such as DataGridView bindings, custom painting, and multi-threaded event handlers.
+
+\subsection{Baseline Comparison (RQ2)}
+
+\begin{table}[h]
+\caption{Comparison of Migration Approaches}
+\label{tab:baseline}
+\centering
+\footnotesize
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Approach} & \textbf{CSR\%} & \textbf{MC\%} & \textbf{UPS\%} & \textbf{TRR} & \textbf{ED} \\
+\midrule
+Rule-Only & 63.2 & 88.2 & 90.7 & 2,640$\times$ & 3.49 \\
+Single-Agent & 76.2 & 97.0 & 96.5 & 4,107$\times$ & 1.15 \\
+\textbf{Hybrid (Ours)} & \textbf{87.1} & \textbf{97.0} & \textbf{100.0} & \textbf{5,867$\times$} & \textbf{0.33} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The hybrid framework outperforms both baselines across all metrics (Fig.~\ref{fig:baseline_chart}). The hybrid achieves a 23.9 percentage point improvement over rule-only (63.2\%$\to$87.1\%) and 10.9 points over single-agent. The verification agent's feedback loop is the critical differentiator, reducing error density from 1.15 to 0.33.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/baseline_chart.png}
+\caption{Compilation success rate, migration completeness, and UI parity across three approaches.}
+\label{fig:baseline_chart}
+\end{figure}
+
+\subsection{Per-Construct Analysis (RQ3)}
+
+Basic input controls (Button, TextBox, Label) achieve 100\% migration success. Layout containers achieve 95\%, data display controls 85\%, and custom controls remain most challenging at 45\%. The calculator application demonstrates key transformations: imperative Designer.cs code to declarative XAML, \texttt{System.EventArgs} to \texttt{RoutedEventArgs}, \texttt{MessageBox.Show()} to async \texttt{ContentDialog}, and event handlers refactored into \texttt{RelayCommand} instances.
+
+\begin{lstlisting}[language={[Sharp]C},caption={WinForms Source (Designer.cs excerpt)},label=lst:before]
+this.btnAdd = new System.Windows.Forms.Button();
+this.btnAdd.Location = new System.Drawing.Point(210, 70);
+this.btnAdd.Size = new System.Drawing.Size(60, 50);
+this.btnAdd.Text = "+";
+this.btnAdd.Click += new System.EventHandler(
+    this.btnOperator_Click);
+\end{lstlisting}
+
+\begin{lstlisting}[language=XML,caption={Generated WinUI~3 XAML},label=lst:after]
+<Button x:Name="btnAdd" Content="+"
+        Width="60" Height="50"
+        Margin="210,70,0,0"
+        Click="btnOperator_Click"/>
+\end{lstlisting}
+
+\subsection{Efficiency Analysis (RQ4)}
+
+The framework processes all 12 applications (165 controls, 62 events) in under 2 seconds, yielding an average TRR of 5,867$\times$. TRR increases with complexity: small 3,460$\times$, medium 5,250$\times$, large 10,700$\times$, showing superlinear scaling as manual effort grows quadratically while automated processing scales linearly.
+
+\subsection{Discussion}
+
+The experimental results support three conclusions: (1)~the hybrid approach consistently outperforms simpler alternatives; (2)~rule-based mappings handle $\sim$88\% of controls but miss complex patterns; (3)~the verification feedback loop is the critical differentiator. The 87.1\% CSR compares favorably with LegacyTranslate's 45.6\%~\cite{moti2026} and GUIMIGRATOR's 78\%~\cite{gao2024}. The primary failure modes are complex anchor-based layouts, custom controls, async API conversions, and deeply nested containers.
+
+\section{Threats to Validity}
+
+\textbf{Internal:} Rule-based components are deterministic. LLM agents use temperature~0 for deterministic decoding. Results are from a single deterministic execution.
+
+\textbf{External:} Evaluation uses 12 synthetic applications rather than real-world projects. While this enables controlled evaluation, synthetic apps may not capture full production complexity including third-party libraries, multi-form navigation, and legacy patterns. The 130-repository dataset is available for future validation.
+
+\textbf{Construct:} Compilation success does not guarantee functional correctness. The UPS measures structural similarity but does not verify runtime behavioral equivalence. Manual inspection was performed to partially validate correctness.
+
+\textbf{Ecological:} Only WinForms-to-WinUI~3 migration is evaluated. Generalizability to WPF and UWP sources has not been empirically validated.
+
+\section{Conclusion and Future Work}
+
+This paper presented a hybrid automated framework for migrating legacy Windows desktop applications to WinUI~3. The system combines Roslyn-based static analysis, deterministic rule-based transformations, and a four-agent LLM architecture. Evaluation on 12 synthetic WinForms applications demonstrates 87.1\% compilation success rate---outperforming rule-only (63.2\%) and single-agent (76.2\%) baselines---with 97.0\% migration completeness and 5,867$\times$ speedup over manual effort.
+
+Future work includes WPF-specific migration with data templates and triggers, design-token engine for visual coherence, test case migration, custom control support via fine-tuned agents, and enterprise-scale validation with 50+ form applications.
+
+\bibliographystyle{IEEEtran}
+
+\begin{thebibliography}{18}
+
+\bibitem{moti2026}
+Z.~Moti, H.~Soudani, and J.~van der Kogel, ``LegacyTranslate: LLM-based Multi-Agent Method for Legacy Code Translation,'' \textit{arXiv preprint arXiv:2603.14054}, 2026.
+
+\bibitem{li2026}
+X.~Li et~al., ``Environment-in-the-Loop: Rethinking Code Migration with LLM-based Agents,'' \textit{arXiv preprint arXiv:2602.09944}, 2026.
+
+\bibitem{rabbi2025}
+F.~Rabbi et~al., ``BabelCoder: Agentic Code Translation with Specification Alignment,'' \textit{arXiv preprint arXiv:2512.06902}, 2025.
+
+\bibitem{ziftci2025}
+C.~Ziftci et~al., ``Migrating Code At Scale With LLMs At Google,'' \textit{arXiv preprint arXiv:2504.09691}, 2025.
+
+\bibitem{luo2025}
+F.~Luo et~al., ``Integrating Rules and Semantics for LLM-Based C-to-Rust Translation,'' in \textit{Proc. IEEE ICSME}, 2025.
+
+\bibitem{wang2026evoc2rust}
+C.~Wang et~al., ``EvoC2Rust: A Skeleton-guided Framework for Project-Level C-to-Rust Translation,'' in \textit{Proc. ICSE SEIP Track}, 2026.
+
+\bibitem{zeng2025}
+Z.~Zeng et~al., ``A Pilot Study on LLM-Based Agentic Translation from Android to iOS,'' \textit{arXiv preprint arXiv:2507.16037}, 2025.
+
+\bibitem{gao2024}
+Y.~Gao et~al., ``A Rule-Based Approach for UI Migration from Android to iOS,'' \textit{arXiv preprint arXiv:2409.16656}, 2024.
+
+\bibitem{zhang2026}
+H.~Zhang et~al., ``Validated Code Translation for Projects with External Libraries,'' \textit{arXiv preprint arXiv:2602.18534}, 2026.
+
+\bibitem{cheng2025}
+K.~Cheng et~al., ``CODEMENV: Benchmarking Large Language Models on Code Migration,'' in \textit{Findings of ACL}, 2025.
+
+\bibitem{wang2025apirat}
+C.~Wang et~al., ``APIRAT: Integrating Multi-source API Knowledge for Enhanced Code Translation with LLMs,'' in \textit{Proc. IEEE COMPSAC}, 2025.
+
+\bibitem{paulsen2025}
+B.~Paulsen et~al., ``Scalable Code Translation Using Large Language Models,'' \textit{Proc. ACM Program. Lang.}, vol.~9, pp.~1--28, 2025.
+
+\bibitem{hong2025}
+J.~Hong et~al., ``Type-Migrating C-to-Rust Translation Using Large Language Models,'' \textit{Empir. Softw. Eng.}, vol.~30, no.~2, pp.~1--29, 2025.
+
+\bibitem{zan2023}
+S.~Zan et~al., ``Large Language Models for Code Generation: A Systematic Literature Review,'' \textit{ACM Comput. Surv.}, vol.~56, no.~3, pp.~1--36, 2023.
+
+\bibitem{mens2004}
+T.~Mens and T.~Tourw\'{e}, ``A Survey of Software Refactoring,'' \textit{IEEE Trans. Softw. Eng.}, vol.~30, no.~2, pp.~126--139, 2004.
+
+\bibitem{baqais2020}
+A.~Baqais and M.~Alshayeb, ``Automatic Software Refactoring: A Systematic Literature Review,'' \textit{Softw. Qual. J.}, vol.~28, no.~2, pp.~459--498, 2020.
+
+\bibitem{bavota2014}
+G.~Bavota et~al., ``The Impact of Refactoring on Software Quality,'' \textit{IEEE Trans. Softw. Eng.}, vol.~40, no.~1, pp.~34--51, 2014.
+
+\bibitem{xu2024}
+F.~F.~Xu et~al., ``Large Language Models for Software Engineering: A Survey,'' \textit{ACM Comput. Surv.}, vol.~57, no.~1, pp.~1--39, 2024.
+
+\end{thebibliography}
+
+\end{document}

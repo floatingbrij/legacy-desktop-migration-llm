@@ -1,0 +1,27 @@
+{
+  "is_valid": false,
+  "errors": 3,
+  "warnings": 0,
+  "fixes_applied": 0,
+  "estimated_compilability": 0.46559999999999996,
+  "issues": [
+    {
+      "severity": "error",
+      "category": "api",
+      "message": "Invalid API usage: System.Drawing reference (use Microsoft.UI) (System.Drawing.Color)",
+      "suggestion": "Replace with WinUI 3 equivalent"
+    },
+    {
+      "severity": "error",
+      "category": "api",
+      "message": "Invalid API usage: System.Drawing reference (use Microsoft.UI) (System.Drawing.Color)",
+      "suggestion": "Replace with WinUI 3 equivalent"
+    },
+    {
+      "severity": "error",
+      "category": "api",
+      "message": "Invalid API usage: Use DispatcherQueue.TryEnqueue instead (.Invoke(()",
+      "suggestion": "Replace with WinUI 3 equivalent"
+    }
+  ]
+}

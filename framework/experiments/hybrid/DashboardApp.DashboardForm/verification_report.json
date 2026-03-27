@@ -1,0 +1,15 @@
+{
+  "is_valid": false,
+  "errors": 1,
+  "warnings": 0,
+  "fixes_applied": 0,
+  "estimated_compilability": 0.72,
+  "issues": [
+    {
+      "severity": "error",
+      "category": "api",
+      "message": "Invalid API usage: Use DispatcherQueue.TryEnqueue instead (.Invoke(()",
+      "suggestion": "Replace with WinUI 3 equivalent"
+    }
+  ]
+}

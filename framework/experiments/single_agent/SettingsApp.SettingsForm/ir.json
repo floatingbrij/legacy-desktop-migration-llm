@@ -1,0 +1,204 @@
+{
+  "id": "SettingsApp.SettingsForm",
+  "class_name": "SettingsForm",
+  "namespace": "SettingsApp",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "SettingsForm_lblTheme",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblTheme",
+      "parent_id": "SettingsForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Theme:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblTheme",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 20,
+        "width": 80,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "SettingsForm_cmbTheme",
+      "control_category": "dropdown",
+      "original_type": "System.Windows.Forms.ComboBox",
+      "name": "cmbTheme",
+      "parent_id": "SettingsForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "cmbTheme",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "selection_changed",
+          "handler_name": "cmbTheme_SelectedIndexChanged",
+          "handler_body": "lblTheme.Text = \"Theme: \" + cmbTheme.SelectedItem.ToString();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 110,
+        "y": 17,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "SettingsForm_chkAutoSave",
+      "control_category": "checkbox",
+      "original_type": "System.Windows.Forms.CheckBox",
+      "name": "chkAutoSave",
+      "parent_id": "SettingsForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Auto-save",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "chkAutoSave",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "checked_changed",
+          "handler_name": "chkAutoSave_CheckedChanged",
+          "handler_body": "if (chkAutoSave.Checked) { /* enable */ }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 60,
+        "width": 150,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "SettingsForm_chkNotify",
+      "control_category": "checkbox",
+      "original_type": "System.Windows.Forms.CheckBox",
+      "name": "chkNotify",
+      "parent_id": "SettingsForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Notifications",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "chkNotify",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 90,
+        "width": 150,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "SettingsForm_btnSave",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnSave",
+      "parent_id": "SettingsForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Save",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnSave",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnSave_Click",
+          "handler_body": "MessageBox.Show(\"Settings saved!\"); this.Close();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 120,
+        "y": 180,
+        "width": 90,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "SettingsForm_btnCancel",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnCancel",
+      "parent_id": "SettingsForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Cancel",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnCancel",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnCancel_Click",
+          "handler_body": "this.Close();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 220,
+        "y": 180,
+        "width": 90,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 6,
+  "total_events": 4,
+  "complexity_tier": "medium"
+}

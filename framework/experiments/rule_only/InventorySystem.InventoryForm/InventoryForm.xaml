@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="InventorySystem.InventoryForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:InventorySystem"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    mc:Ignorable="d"
+    Title="">
+
+    <Grid x:Name="RootGrid">
+        <MenuBar x:Name="menuStrip1" >
+            <!-- MenuBarItems -->
+        </MenuBar>
+        <CommandBar x:Name="toolStrip1" >
+            <!-- AppBarButtons -->
+        </CommandBar>
+        <InfoBar x:Name="statusStrip1"/>
+        <TabView x:Name="tabMain" Width="1000" Height="580" Margin="10,60,0,0">
+            <!-- TabViewItems -->
+        </TabView>
+        <controls:DataGrid x:Name="dgvProducts" Width="970" Height="350" Margin="10,30,0,0" cell_click="dgvProducts_CellClick" cell_value_changed="dgvProducts_CellValueChanged"/>
+        <Grid x:Name="panelDetails" Width="970" Height="170" Margin="10,400,0,0">
+
+        </Grid>
+        <TextBlock x:Name="lblProductName" Text="Product:" Width="70" Height="20" Margin="20,10,0,0"/>
+        <TextBox x:Name="txtProductName" Text="" PlaceholderText="" Width="250" Height="23" Margin="100,7,0,0" TextChanged="txtProductName_TextChanged"/>
+        <TextBlock x:Name="lblCategory" Text="Category:" Width="70" Height="20" Margin="20,40,0,0"/>
+        <ComboBox x:Name="cmbCategory" Width="250" Height="23" Margin="100,37,0,0" SelectionChanged="cmbCategory_Changed"> </ComboBox>
+        <TextBlock x:Name="lblPrice" Text="Price:" Width="50" Height="20" Margin="370,10,0,0"/>
+        <NumberBox x:Name="nudPrice" Value="0" Maximum="100" Minimum="0" Width="120" Height="23" Margin="430,7,0,0"/>
+        <TextBlock x:Name="lblQuantity" Text="Quantity:" Width="50" Height="20" Margin="370,40,0,0"/>
+        <NumberBox x:Name="nudQuantity" Value="0" Maximum="100" Minimum="0" Width="120" Height="23" Margin="430,37,0,0"/>
+        <Button x:Name="btnAdd" Content="Add Product" Width="110" Height="28" Margin="580,7,0,0" Click="btnAdd_Click"/>
+        <Button x:Name="btnUpdate" Content="Update" Width="110" Height="28" Margin="580,40,0,0" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" Width="90" Height="28" Margin="700,7,0,0" Click="btnDelete_Click"/>
+        <Button x:Name="btnExport" Content="Export CSV" Width="90" Height="28" Margin="700,40,0,0" Click="btnExport_Click"/>
+        <TextBox x:Name="txtSearch" Text="" PlaceholderText="" Width="170" Height="23" Margin="800,7,0,0" TextChanged="txtSearch_TextChanged"/>
+        <TextBlock x:Name="lblSearch" Text="Search:" Width="170" Height="20" Margin="800,40,0,0"/>
+        <CheckBox x:Name="chkLowStock" Content="Low Stock Only" IsChecked="False" Width="120" Height="20" Margin="800,60,0,0" Checked="chkLowStock_Changed"/>
+        <TextBlock x:Name="lblTotal" Text="Total: 0 items" Width="200" Height="20" Margin="10,660,0,0"/>
+        <TextBlock x:Name="lblValue" Text="Total Value: $0.00" Width="200" Height="20" Margin="300,660,0,0"/>
+        <ProgressBar x:Name="progressBar1" Value="0" Maximum="100" Minimum="0" Width="350" Height="15" Margin="650,660,0,0"/>
+        <DatePicker x:Name="dtpDate" Width="200" Height="23" Margin="580,70,0,0"/>
+    </Grid>
+</Window>

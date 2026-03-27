@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="LoginApp.LoginForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LoginApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="">
+
+    <Grid x:Name="RootGrid">
+        <TextBlock x:Name="lblTitle" Text="Welcome" Width="200" Height="35" Margin="80,20,0,0"/>
+        <TextBlock x:Name="lblUsername" Text="Username:" Width="80" Height="20" Margin="30,80,0,0"/>
+        <TextBlock x:Name="lblPassword" Text="Password:" Width="80" Height="20" Margin="30,120,0,0"/>
+        <TextBox x:Name="txtUsername" Text="" PlaceholderText="" Width="200" Height="23" Margin="120,77,0,0" TextChanged="txtUsername_TextChanged"/>
+        <TextBox x:Name="txtPassword" Text="" PlaceholderText="" Width="200" Height="23" Margin="120,117,0,0" TextChanged="txtPassword_TextChanged"/>
+        <Button x:Name="btnLogin" Content="Login" Width="90" Height="30" Margin="120,170,0,0" Click="btnLogin_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" Width="90" Height="30" Margin="230,170,0,0" Click="btnCancel_Click"/>
+        <CheckBox x:Name="chkRemember" Content="Remember me" IsChecked="False" Width="150" Height="20" Margin="120,210,0,0"/>
+        <Image x:Name="picLogo" Width="40" Height="40" Margin="30,10,0,0"/>
+    </Grid>
+</Window>

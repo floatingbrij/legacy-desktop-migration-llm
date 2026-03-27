@@ -1,0 +1,298 @@
+{
+  "id": "ImageViewerApp.ImageViewerForm",
+  "class_name": "ImageViewerForm",
+  "namespace": "ImageViewerApp",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "ImageViewerForm_picMain",
+      "control_category": "image",
+      "original_type": "System.Windows.Forms.PictureBox",
+      "name": "picMain",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "picMain",
+          "category": "data"
+        },
+        {
+          "name": "SizeMode",
+          "value": "System.Windows.Forms.PictureBoxSizeMode.Zoom",
+          "category": "appearance"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "dock": "DockStyle.Fill"
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "ImageViewerForm_menuStrip1",
+      "control_category": "menu",
+      "original_type": "System.Windows.Forms.MenuStrip",
+      "name": "menuStrip1",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "menuStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "ImageViewerForm_toolStrip1",
+      "control_category": "toolbar",
+      "original_type": "System.Windows.Forms.ToolStrip",
+      "name": "toolStrip1",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "toolStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "ImageViewerForm_statusStrip1",
+      "control_category": "status_bar",
+      "original_type": "System.Windows.Forms.StatusStrip",
+      "name": "statusStrip1",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "statusStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "ImageViewerForm_panelBottom",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelBottom",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelBottom",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "width": 800,
+        "height": 50,
+        "dock": "DockStyle.Bottom"
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "ImageViewerForm_btnPrev",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnPrev",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "<",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnPrev",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnPrev_Click",
+          "handler_body": "if (currentIndex > 0) { currentIndex--; LoadImage(files[currentIndex]); }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 300,
+        "y": 10,
+        "width": 40,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "ImageViewerForm_btnNext",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnNext",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": ">",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnNext",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNext_Click",
+          "handler_body": "if (currentIndex < files.Length - 1) { currentIndex++; LoadImage(files[currentIndex]); }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 460,
+        "y": 10,
+        "width": 40,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "ImageViewerForm_trackZoom",
+      "control_category": "slider",
+      "original_type": "System.Windows.Forms.TrackBar",
+      "name": "trackZoom",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "trackZoom",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "scroll",
+          "handler_name": "trackZoom_Scroll",
+          "handler_body": "float zoom = trackZoom.Value / 100f;\n            picMain.Width = (int)(originalWidth * zoom);\n            picMain.Height = (int)(originalHeight * zoom);\n            lblZoom.Text = $\"{trackZoom.Value}%\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 520,
+        "y": 10,
+        "width": 200,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "ImageViewerForm_lblFileName",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblFileName",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblFileName",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 15,
+        "width": 280,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "ImageViewerForm_lblZoom",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblZoom",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "100%",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblZoom",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 730,
+        "y": 15,
+        "width": 50,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "ImageViewerForm_progressLoad",
+      "control_category": "progress",
+      "original_type": "System.Windows.Forms.ProgressBar",
+      "name": "progressLoad",
+      "parent_id": "ImageViewerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "progressLoad",
+          "category": "data"
+        },
+        {
+          "name": "Visible",
+          "value": "false",
+          "category": "behavior"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 350,
+        "y": 15,
+        "width": 100,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 11,
+  "total_events": 3,
+  "complexity_tier": "medium"
+}

@@ -1,0 +1,176 @@
+{
+  "id": "TimerApp.TimerForm",
+  "class_name": "TimerForm",
+  "namespace": "TimerApp",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "TimerForm_lblTime",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblTime",
+      "parent_id": "TimerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "00:00:00",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblTime",
+          "category": "data"
+        },
+        {
+          "name": "Font",
+          "value": "Segoe UI,24",
+          "category": "appearance"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 40,
+        "y": 20,
+        "width": 200,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "TimerForm_btnStart",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnStart",
+      "parent_id": "TimerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Start",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnStart",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnStart_Click",
+          "handler_body": "timer1.Start();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 20,
+        "y": 90,
+        "width": 75,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "TimerForm_btnStop",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnStop",
+      "parent_id": "TimerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Stop",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnStop",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnStop_Click",
+          "handler_body": "timer1.Stop();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 100,
+        "y": 90,
+        "width": 75,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "TimerForm_btnReset",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnReset",
+      "parent_id": "TimerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Reset",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnReset",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnReset_Click",
+          "handler_body": "timer1.Stop(); lblTime.Text = \"00:00:00\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 180,
+        "y": 90,
+        "width": 75,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "TimerForm_timer1",
+      "control_category": "timer",
+      "original_type": "System.Windows.Forms.Timer",
+      "name": "timer1",
+      "parent_id": "TimerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "timer1",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "timer_tick",
+          "handler_name": "timer1_Tick",
+          "handler_body": "TimeSpan ts = DateTime.Now - startTime;\n            lblTime.Text = ts.ToString(@\"hh\\:mm\\:ss\");",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 5,
+  "total_events": 4,
+  "complexity_tier": "small"
+}

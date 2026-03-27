@@ -1,0 +1,684 @@
+{
+  "id": "EmailClient.EmailForm",
+  "class_name": "EmailForm",
+  "namespace": "EmailClient",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "EmailForm_menuStrip1",
+      "control_category": "menu",
+      "original_type": "System.Windows.Forms.MenuStrip",
+      "name": "menuStrip1",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "menuStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_toolStrip1",
+      "control_category": "toolbar",
+      "original_type": "System.Windows.Forms.ToolStrip",
+      "name": "toolStrip1",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "toolStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_statusStrip1",
+      "control_category": "status_bar",
+      "original_type": "System.Windows.Forms.StatusStrip",
+      "name": "statusStrip1",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "statusStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_splitMain",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.SplitContainer",
+      "name": "splitMain",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "splitMain",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "dock": "DockStyle.Fill"
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_tvFolders",
+      "control_category": "tree",
+      "original_type": "System.Windows.Forms.TreeView",
+      "name": "tvFolders",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "tvFolders",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "afterselect",
+          "handler_name": "tvFolders_AfterSelect",
+          "handler_body": "LoadFolder(tvFolders.SelectedNode.Text);",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 5,
+        "y": 5,
+        "width": 200,
+        "height": 650
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_lvEmails",
+      "control_category": "list",
+      "original_type": "System.Windows.Forms.ListView",
+      "name": "lvEmails",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "lvEmails",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "selection_changed",
+          "handler_name": "lvEmails_SelectedIndexChanged",
+          "handler_body": "if (lvEmails.SelectedItems.Count > 0)\n            {\n                var email = (Email)lvEmails.SelectedItems[0].Tag;\n                lblFromValue.Text = email.From;\n                lblSubjectValue.Text = email.Subject;\n                lblDateValue.Text = email.Date.ToString();\n                rtbBody.Text = email.Body;\n            }",
+          "complexity": "simple"
+        },
+        {
+          "event_type": "double_click",
+          "handler_name": "lvEmails_DoubleClick",
+          "handler_body": "if (lvEmails.SelectedItems.Count > 0)\n            {\n                var compose = new ComposeForm((Email)lvEmails.SelectedItems[0].Tag);\n                compose.ShowDialog();\n            }",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 5,
+        "width": 500,
+        "height": 350
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_rtbBody",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.RichTextBox",
+      "name": "rtbBody",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "rtbBody",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 360,
+        "width": 870,
+        "height": 300
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_panelHeader",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelHeader",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelHeader",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 5,
+        "width": 870,
+        "height": 80
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_lblFrom",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblFrom",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "From:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblFrom",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 5,
+        "y": 5,
+        "width": 50,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_lblFromValue",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblFromValue",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblFromValue",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 60,
+        "y": 5,
+        "width": 500,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_lblSubject",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblSubject",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Subject:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblSubject",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 5,
+        "y": 30,
+        "width": 50,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_lblSubjectValue",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblSubjectValue",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblSubjectValue",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 60,
+        "y": 30,
+        "width": 500,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_lblDate",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblDate",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Date:",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblDate",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 5,
+        "y": 55,
+        "width": 50,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_lblDateValue",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblDateValue",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblDateValue",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 60,
+        "y": 55,
+        "width": 500,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_btnCompose",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnCompose",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Compose",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnCompose",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnCompose_Click",
+          "handler_body": "var compose = new ComposeForm();\n            compose.ShowDialog();",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 660,
+        "width": 90,
+        "height": 28
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_btnReply",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnReply",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Reply",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnReply",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnReply_Click",
+          "handler_body": "if (lvEmails.SelectedItems.Count > 0)\n                new ComposeForm((Email)lvEmails.SelectedItems[0].Tag, ComposeMode.Reply).ShowDialog();",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 110,
+        "y": 660,
+        "width": 90,
+        "height": 28
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_btnForward",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnForward",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Forward",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnForward",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnForward_Click",
+          "handler_body": "new ComposeForm(null, ComposeMode.Forward).ShowDialog();",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 660,
+        "width": 90,
+        "height": 28
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_btnDelete",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnDelete",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Delete",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnDelete",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnDelete_Click",
+          "handler_body": "if (lvEmails.SelectedItems.Count > 0 && MessageBox.Show(\"Delete email?\", \"Confirm\", MessageBoxButtons.YesNo) == DialogResult.Yes)\n            {\n                lvEmails.Items.Remove(lvEmails.SelectedItems[0]);\n                lblStatus.Text = $\"Inbox ({lvEmails.Items.Count} messages)\";\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 310,
+        "y": 660,
+        "width": 90,
+        "height": 28
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_btnRefresh",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnRefresh",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Refresh",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnRefresh",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnRefresh_Click",
+          "handler_body": "progressBar1.Visible = true;\n            BackgroundWorker bw = new BackgroundWorker();\n            bw.DoWork += (s, ev) => { Thread.Sleep(2000); };\n            bw.RunWorkerCompleted += (s, ev) => { this.Invoke((Action)(() => { LoadFolder(\"Inbox\"); progressBar1.Visible = false; })); };\n            bw.RunWorkerAsync();",
+          "complexity": "moderate"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 410,
+        "y": 660,
+        "width": 90,
+        "height": 28
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "EmailForm_txtSearch",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.TextBox",
+      "name": "txtSearch",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "txtSearch",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "text_changed",
+          "handler_name": "txtSearch_TextChanged",
+          "handler_body": "foreach (ListViewItem item in lvEmails.Items)\n                item.BackColor = item.Text.Contains(txtSearch.Text) ? System.Drawing.Color.Yellow : System.Drawing.Color.White;",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 600,
+        "y": 660,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_lblStatus",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblStatus",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Inbox (0 messages)",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblStatus",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 830,
+        "y": 665,
+        "width": 250,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_checkMailTimer",
+      "control_category": "timer",
+      "original_type": "System.Windows.Forms.Timer",
+      "name": "checkMailTimer",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "checkMailTimer",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "timer_tick",
+          "handler_name": "checkMailTimer_Tick",
+          "handler_body": "CheckNewMail();\n            lblStatus.Text = $\"Last check: {DateTime.Now:HH:mm:ss}\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_progressBar1",
+      "control_category": "progress",
+      "original_type": "System.Windows.Forms.ProgressBar",
+      "name": "progressBar1",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "progressBar1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 830,
+        "y": 690,
+        "width": 250,
+        "height": 15
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_notifyIcon1",
+      "control_category": "notification",
+      "original_type": "System.Windows.Forms.NotifyIcon",
+      "name": "notifyIcon1",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "notifyIcon1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "EmailForm_ctxMenu",
+      "control_category": "context_menu",
+      "original_type": "System.Windows.Forms.ContextMenuStrip",
+      "name": "ctxMenu",
+      "parent_id": "EmailForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "ctxMenu",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    }
+  ],
+  "total_controls": 25,
+  "total_events": 10,
+  "complexity_tier": "large"
+}

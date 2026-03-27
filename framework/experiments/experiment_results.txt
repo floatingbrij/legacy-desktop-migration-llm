@@ -1,0 +1,92 @@
+================================================================================
+METRIC DEFINITIONS
+================================================================================
+  Compilable%    - Compilation Success Rate: % of forms that produce
+                   compilable WinUI 3 output (estimated)
+  Complete%      - Migration Completeness: % of source controls
+                   that were successfully migrated to WinUI 3
+  UI Parity%     - UI Parity Score: % of UI properties (colors, fonts,
+                   layout) correctly mapped to WinUI 3 equivalents
+  Speedup        - Time Reduction Ratio: how many times faster the
+                   automated migration is vs estimated manual effort
+  Err/100LOC     - Error Density: number of remaining errors per
+                   100 lines of generated code (lower is better)
+
+================================================================================
+TABLE III: Migration Results by Complexity Tier (Hybrid Framework)
+================================================================================
+
+Tier         n  Compilable%   Complete%  UI Parity%   Speedup  Err/100LOC
+------------------------------------------------------------------------
+Small        5       97.3%       96.0%      100.0%     3460x       0.00
+Medium       4       86.0%      100.0%      100.0%     5250x       0.52
+Large        3       71.7%       94.7%      100.0%    10700x       0.62
+------------------------------------------------------------------------
+Overall     12       87.1%       97.0%      100.0%     5867x       0.33
+
+
+================================================================================
+TABLE IV: Baseline Comparison
+================================================================================
+
+Approach                Compilable%   Complete%  UI Parity%   Speedup  Err/100LOC
+--------------------------------------------------------------------------------
+Rule-Only                    63.2%       88.2%       90.7%     2640x       3.49
+Single-Agent LLM             76.2%       97.0%       96.5%     4107x       1.15
+Full Hybrid (Ours)           87.1%       97.0%      100.0%     5867x       0.33
+
+
+================================================================================
+TABLE V: Per-Application Results (Hybrid Framework)
+================================================================================
+
+Application                    Tier      Controls  Events  Compilable%   Complete%  UI Parity%   Speedup
+---------------------------------------------------------------------------------------------------------
+InventoryForm                  large           26      12       95.0%       96.2%      100.0%    10000x
+EmailForm                      large           25      10       48.0%       92.0%      100.0%    12900x
+DashboardForm                  large           25      12       72.0%       96.0%      100.0%     9200x
+NotepadForm                    medium          10       6       74.2%      100.0%      100.0%     5000x
+ContactsForm                   medium          13       6       74.2%      100.0%      100.0%     5000x
+FileManagerForm                medium          12       4       97.8%      100.0%      100.0%     7300x
+ImageViewerForm                medium          11       3       97.8%      100.0%      100.0%     3700x
+CalculatorForm                 small           18      16       95.0%      100.0%      100.0%     8400x
+LoginForm                      small            9       4       97.8%      100.0%      100.0%     3000x
+AboutForm                      small            5       1       97.8%      100.0%      100.0%     1300x
+SettingsForm                   small            6       4       97.8%      100.0%      100.0%     2400x
+TimerForm                      small            5       4       97.8%       80.0%      100.0%     2200x
+
+
+================================================================================
+TABLE VI: Control-Level Migration Coverage (Hybrid)
+================================================================================
+
+(Control-level breakdown available in individual verification reports)
+
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
+Rule-Only:
+  Total forms processed: 12
+  Total controls: 165
+  Controls successfully migrated: 143
+  Avg Compilation Success Rate: 63.2%
+  Avg Migration Completeness: 88.2%
+  Compilation Success range: 52.8% - 75.6%
+
+Single-Agent:
+  Total forms processed: 12
+  Total controls: 165
+  Controls successfully migrated: 160
+  Avg Compilation Success Rate: 76.2%
+  Avg Migration Completeness: 97.0%
+  Compilation Success range: 40.0% - 93.0%
+
+Hybrid:
+  Total forms processed: 12
+  Total controls: 165
+  Controls successfully migrated: 160
+  Avg Compilation Success Rate: 87.1%
+  Avg Migration Completeness: 97.0%
+  Compilation Success range: 48.0% - 97.8%

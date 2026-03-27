@@ -1,0 +1,644 @@
+{
+  "id": "SimpleCalc.CalculatorForm",
+  "class_name": "CalculatorForm",
+  "namespace": "SimpleCalc",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "CalculatorForm_txtDisplay",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.TextBox",
+      "name": "txtDisplay",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "txtDisplay",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "0",
+          "category": "data"
+        },
+        {
+          "name": "ReadOnly",
+          "value": "true",
+          "category": "behavior"
+        },
+        {
+          "name": "TextAlign",
+          "value": "System.Windows.Forms.HorizontalAlignment.Right",
+          "category": "appearance"
+        },
+        {
+          "name": "Font",
+          "value": "Segoe UI,18",
+          "category": "appearance"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 12,
+        "y": 12,
+        "width": 260,
+        "height": 39
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn1",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn1",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn1",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "1",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 12,
+        "y": 70,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn2",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn2",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn2",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "2",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 78,
+        "y": 70,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn3",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn3",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn3",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "3",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 144,
+        "y": 70,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn4",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn4",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn4",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "4",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 12,
+        "y": 126,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn5",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn5",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn5",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "5",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 78,
+        "y": 126,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn6",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn6",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn6",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "6",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 144,
+        "y": 126,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn7",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn7",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn7",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "7",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 12,
+        "y": 182,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn8",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn8",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn8",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "8",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 78,
+        "y": 182,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn9",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn9",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn9",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "9",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 144,
+        "y": 182,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btn0",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btn0",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btn0",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "0",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnNumber_Click",
+          "handler_body": "Button btn = (Button)sender;\n            if (newNumber)\n            {\n                txtDisplay.Text = btn.Text;\n                newNumber = false;\n            }\n            else\n            {\n                txtDisplay.Text += btn.Text;\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 12,
+        "y": 238,
+        "width": 126,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btnAdd",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnAdd",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnAdd",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "+",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnOperator_Click",
+          "handler_body": "Button btn = (Button)sender;\n            currentValue = double.Parse(txtDisplay.Text);\n            currentOperator = btn.Text;\n            newNumber = true;\n            lblResult.Text = $\"{currentValue} {currentOperator}\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 70,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btnSubtract",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnSubtract",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnSubtract",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "-",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnOperator_Click",
+          "handler_body": "Button btn = (Button)sender;\n            currentValue = double.Parse(txtDisplay.Text);\n            currentOperator = btn.Text;\n            newNumber = true;\n            lblResult.Text = $\"{currentValue} {currentOperator}\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 126,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btnMultiply",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnMultiply",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnMultiply",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "*",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnOperator_Click",
+          "handler_body": "Button btn = (Button)sender;\n            currentValue = double.Parse(txtDisplay.Text);\n            currentOperator = btn.Text;\n            newNumber = true;\n            lblResult.Text = $\"{currentValue} {currentOperator}\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 182,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btnDivide",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnDivide",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnDivide",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "/",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnOperator_Click",
+          "handler_body": "Button btn = (Button)sender;\n            currentValue = double.Parse(txtDisplay.Text);\n            currentOperator = btn.Text;\n            newNumber = true;\n            lblResult.Text = $\"{currentValue} {currentOperator}\";",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 210,
+        "y": 238,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btnEquals",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnEquals",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnEquals",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "=",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnEquals_Click",
+          "handler_body": "double secondValue = double.Parse(txtDisplay.Text);\n            double result = 0;\n            switch (currentOperator)\n            {\n                case \"+\": result = currentValue + secondValue; break;\n                case \"-\": result = currentValue - secondValue; break;\n                case \"*\": result = currentValue * secondValue; break;\n                case \"/\":\n                    if (secondValue != 0)\n                        result = currentValue / secondValue;\n                    else\n                        MessageBox.Show(\"Cannot divide by zero!\");\n                    break;\n            }\n            txtDisplay.Text = result.ToString();\n            lblResult.Text = \"\";\n            newNumber = true;",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 144,
+        "y": 238,
+        "width": 60,
+        "height": 50
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_btnClear",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnClear",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnClear",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "Clear",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnClear_Click",
+          "handler_body": "txtDisplay.Text = \"0\";\n            lblResult.Text = \"\";\n            currentValue = 0;\n            currentOperator = \"\";\n            newNumber = true;",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 12,
+        "y": 294,
+        "width": 260,
+        "height": 40
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "CalculatorForm_lblResult",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblResult",
+      "parent_id": "CalculatorForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "lblResult",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 12,
+        "y": 340,
+        "width": 260,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 18,
+  "total_events": 16,
+  "complexity_tier": "large"
+}

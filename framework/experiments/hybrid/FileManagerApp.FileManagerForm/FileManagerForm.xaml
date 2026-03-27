@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="FileManagerApp.FileManagerForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FileManagerApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="">
+
+    <Grid x:Name="RootGrid">
+        <TreeView x:Name="tvFolders" Width="250" Height="460" Margin="10,40,0,0" afterselect="tvFolders_AfterSelect"/>
+        <ListView x:Name="lvFiles" Width="510" Height="460" Margin="270,40,0,0" DoubleTapped="lvFiles_DoubleClick"/>
+        <TextBox x:Name="txtPath" Text="" PlaceholderText="" Width="700" Height="23" Margin="10,10,0,0" KeyDown="txtPath_KeyDown"/>
+        <Button x:Name="btnGo" Content="Go" Width="60" Height="25" Margin="720,10,0,0" Click="btnGo_Click"/>
+        <MenuBar x:Name="menuStrip1" >
+            <!-- MenuBarItems -->
+        </MenuBar>
+        <CommandBar x:Name="toolStrip1" >
+            <!-- AppBarButtons -->
+        </CommandBar>
+        <InfoBar x:Name="statusStrip1"/>
+        <SplitView x:Name="splitContainer1" Width="800" Height="470" Margin="0,60,0,0"> <SplitView.Pane> <Grid/> </SplitView.Pane> <Grid/>
+</SplitView>
+        <Grid x:Name="panelToolbar" Width="800" Height="35" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+
+        </Grid>
+        <!-- TODO: ContextMenuStrip "ctxMenu" needs manual migration -->
+        <ProgressBar x:Name="progressBar1" Value="0" Maximum="100" Minimum="0" Width="770" Height="15" Margin="10,520,0,0"/>
+        <TextBlock x:Name="lblStatus" Text="Ready" Width="300" Height="20" Margin="10,505,0,0"/>
+    </Grid>
+</Window>

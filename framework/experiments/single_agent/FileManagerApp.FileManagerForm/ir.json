@@ -1,0 +1,311 @@
+{
+  "id": "FileManagerApp.FileManagerForm",
+  "class_name": "FileManagerForm",
+  "namespace": "FileManagerApp",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "FileManagerForm_tvFolders",
+      "control_category": "tree",
+      "original_type": "System.Windows.Forms.TreeView",
+      "name": "tvFolders",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "tvFolders",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "afterselect",
+          "handler_name": "tvFolders_AfterSelect",
+          "handler_body": "string path = tvFolders.SelectedNode.Tag.ToString();\n            txtPath.Text = path;\n            LoadFiles(path);",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 40,
+        "width": 250,
+        "height": 460
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "FileManagerForm_lvFiles",
+      "control_category": "list",
+      "original_type": "System.Windows.Forms.ListView",
+      "name": "lvFiles",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "lvFiles",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "double_click",
+          "handler_name": "lvFiles_DoubleClick",
+          "handler_body": "if (lvFiles.SelectedItems.Count > 0)\n            {\n                string file = lvFiles.SelectedItems[0].Tag.ToString();\n                System.Diagnostics.Process.Start(file);\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 270,
+        "y": 40,
+        "width": 510,
+        "height": 460
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "FileManagerForm_txtPath",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.TextBox",
+      "name": "txtPath",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "txtPath",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "key_down",
+          "handler_name": "txtPath_KeyDown",
+          "handler_body": "if (e.KeyCode == Keys.Enter)\n                LoadPath(txtPath.Text);",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 10,
+        "width": 700,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "FileManagerForm_btnGo",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnGo",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Go",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "btnGo",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnGo_Click",
+          "handler_body": "LoadPath(txtPath.Text);",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 720,
+        "y": 10,
+        "width": 60,
+        "height": 25
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "FileManagerForm_menuStrip1",
+      "control_category": "menu",
+      "original_type": "System.Windows.Forms.MenuStrip",
+      "name": "menuStrip1",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "menuStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "FileManagerForm_toolStrip1",
+      "control_category": "toolbar",
+      "original_type": "System.Windows.Forms.ToolStrip",
+      "name": "toolStrip1",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "toolStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "FileManagerForm_statusStrip1",
+      "control_category": "status_bar",
+      "original_type": "System.Windows.Forms.StatusStrip",
+      "name": "statusStrip1",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "statusStrip1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "FileManagerForm_splitContainer1",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.SplitContainer",
+      "name": "splitContainer1",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "splitContainer1",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 0,
+        "y": 60,
+        "width": 800,
+        "height": 470
+      },
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "FileManagerForm_panelToolbar",
+      "control_category": "container",
+      "original_type": "System.Windows.Forms.Panel",
+      "name": "panelToolbar",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "panelToolbar",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "width": 800,
+        "height": 35,
+        "dock": "DockStyle.Top"
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "FileManagerForm_ctxMenu",
+      "control_category": "context_menu",
+      "original_type": "System.Windows.Forms.ContextMenuStrip",
+      "name": "ctxMenu",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "ctxMenu",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {},
+      "migration_difficulty": "moderate"
+    },
+    {
+      "id": "FileManagerForm_progressBar1",
+      "control_category": "progress",
+      "original_type": "System.Windows.Forms.ProgressBar",
+      "name": "progressBar1",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "progressBar1",
+          "category": "data"
+        },
+        {
+          "name": "Visible",
+          "value": "false",
+          "category": "behavior"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 520,
+        "width": 770,
+        "height": 15
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "FileManagerForm_lblStatus",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblStatus",
+      "parent_id": "FileManagerForm",
+      "properties": [
+        {
+          "name": "Text",
+          "value": "Ready",
+          "category": "data"
+        },
+        {
+          "name": "Name",
+          "value": "lblStatus",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 10,
+        "y": 505,
+        "width": 300,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 12,
+  "total_events": 4,
+  "complexity_tier": "medium"
+}

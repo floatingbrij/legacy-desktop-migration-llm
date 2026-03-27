@@ -1,0 +1,293 @@
+{
+  "id": "LoginApp.LoginForm",
+  "class_name": "LoginForm",
+  "namespace": "LoginApp",
+  "title": "",
+  "width": 800,
+  "height": 600,
+  "controls": [
+    {
+      "id": "LoginForm_lblTitle",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblTitle",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "lblTitle",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "Welcome",
+          "category": "data"
+        },
+        {
+          "name": "Font",
+          "value": "Segoe UI,16",
+          "category": "appearance"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 80,
+        "y": 20,
+        "width": 200,
+        "height": 35
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_lblUsername",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblUsername",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "lblUsername",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "Username:",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 30,
+        "y": 80,
+        "width": 80,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_lblPassword",
+      "control_category": "text_display",
+      "original_type": "System.Windows.Forms.Label",
+      "name": "lblPassword",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "lblPassword",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "Password:",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 30,
+        "y": 120,
+        "width": 80,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_txtUsername",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.TextBox",
+      "name": "txtUsername",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "txtUsername",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "text_changed",
+          "handler_name": "txtUsername_TextChanged",
+          "handler_body": "ValidateInputs();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 120,
+        "y": 77,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_txtPassword",
+      "control_category": "text_input",
+      "original_type": "System.Windows.Forms.TextBox",
+      "name": "txtPassword",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "txtPassword",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "text_changed",
+          "handler_name": "txtPassword_TextChanged",
+          "handler_body": "ValidateInputs();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 120,
+        "y": 117,
+        "width": 200,
+        "height": 23
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_btnLogin",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnLogin",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnLogin",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "Login",
+          "category": "data"
+        },
+        {
+          "name": "Enabled",
+          "value": "false",
+          "category": "behavior"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnLogin_Click",
+          "handler_body": "if (txtUsername.Text == \"admin\" && txtPassword.Text == \"password\")\n            {\n                MessageBox.Show(\"Login successful!\", \"Success\", MessageBoxButtons.OK, MessageBoxIcon.Information);\n                this.DialogResult = DialogResult.OK;\n                this.Close();\n            }\n            else\n            {\n                MessageBox.Show(\"Invalid credentials!\", \"Error\", MessageBoxButtons.OK, MessageBoxIcon.Error);\n                txtPassword.Text = \"\";\n                txtPassword.Focus();\n            }",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 120,
+        "y": 170,
+        "width": 90,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_btnCancel",
+      "control_category": "button",
+      "original_type": "System.Windows.Forms.Button",
+      "name": "btnCancel",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "btnCancel",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "Cancel",
+          "category": "data"
+        }
+      ],
+      "events": [
+        {
+          "event_type": "click",
+          "handler_name": "btnCancel_Click",
+          "handler_body": "this.DialogResult = DialogResult.Cancel;\n            this.Close();",
+          "complexity": "simple"
+        }
+      ],
+      "children": [],
+      "layout": {
+        "x": 230,
+        "y": 170,
+        "width": 90,
+        "height": 30
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_chkRemember",
+      "control_category": "checkbox",
+      "original_type": "System.Windows.Forms.CheckBox",
+      "name": "chkRemember",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "chkRemember",
+          "category": "data"
+        },
+        {
+          "name": "Text",
+          "value": "Remember me",
+          "category": "data"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 120,
+        "y": 210,
+        "width": 150,
+        "height": 20
+      },
+      "migration_difficulty": "simple"
+    },
+    {
+      "id": "LoginForm_picLogo",
+      "control_category": "image",
+      "original_type": "System.Windows.Forms.PictureBox",
+      "name": "picLogo",
+      "parent_id": "LoginForm",
+      "properties": [
+        {
+          "name": "Name",
+          "value": "picLogo",
+          "category": "data"
+        },
+        {
+          "name": "SizeMode",
+          "value": "System.Windows.Forms.PictureBoxSizeMode.StretchImage",
+          "category": "appearance"
+        }
+      ],
+      "events": [],
+      "children": [],
+      "layout": {
+        "x": 30,
+        "y": 10,
+        "width": 40,
+        "height": 40
+      },
+      "migration_difficulty": "simple"
+    }
+  ],
+  "total_controls": 9,
+  "total_events": 4,
+  "complexity_tier": "medium"
+}
