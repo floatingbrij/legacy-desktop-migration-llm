@@ -50,7 +50,7 @@ haripras2@srmist.edu.in}
 \begin{abstract}
 A significant proportion of enterprise desktop software continues to operate on legacy Windows frameworks such as Windows Forms (WinForms), Windows Presentation Foundation (WPF), and the Universal Windows Platform (UWP). While these applications sustain critical business operations, they suffer from outdated architectures, limited maintainability, and incompatibility with Microsoft's modern development ecosystem centered around WinUI~3 and the Windows App SDK. Manual migration of such systems is prohibitively expensive, requiring deep knowledge of both source and target frameworks.
 
-This paper proposes a hybrid automated migration framework that combines deterministic rule-based transformations with a multi-agent Large Language Model (LLM) architecture to convert legacy Windows desktop applications into modern WinUI~3 projects. The framework employs Roslyn-based static code analysis to extract UI control hierarchies, event-handler bindings, and layout structures from legacy source code. An intermediate representation decouples the extracted semantics from framework-specific syntax. Rule-based engines handle deterministic control mappings while four specialized LLM agents---Analyzer, Translator, Refactoring, and Verification---collaboratively address complex transformations including MVVM pattern conversion and XAML generation. The system incorporates an iterative compilation feedback loop for self-correction. To evaluate the approach, a curated dataset of over 100 open-source WinForms, WPF, and UWP applications is collected from public GitHub repositories. Experimental evaluation on 12 synthetic WinForms applications (165 controls, 62 event handlers) demonstrates that the hybrid multi-agent approach achieves 87.1\% compilation success rate, 97.0\% migration completeness, and 100\% UI parity---outperforming rule-only (63.2\%) and single-agent (76.2\%) baselines across all metrics. The framework achieves a time reduction ratio of 5,867$\times$ over estimated manual effort, indicating that AI-assisted modernization of Windows desktop applications is both feasible and scalable.
+This paper proposes a hybrid automated migration framework that combines deterministic rule-based transformations with a multi-agent Large Language Model (LLM) architecture to convert legacy Windows desktop applications into modern WinUI~3 projects. The framework employs Roslyn-based static code analysis to extract UI control hierarchies, event-handler bindings, and layout structures from legacy source code. An intermediate representation decouples the extracted semantics from framework-specific syntax. Rule-based engines handle deterministic control mappings while four specialized LLM agents---Analyzer, Translator, Refactoring, and Verification---collaboratively address complex transformations including MVVM pattern conversion and XAML generation. The system incorporates an iterative compilation feedback loop for self-correction. To evaluate the approach, a curated dataset of 530 open-source WinForms, WPF, and UWP applications is collected from public GitHub repositories. Experimental evaluation on 12 synthetic WinForms applications (165 controls, 62 event handlers) demonstrates that the hybrid multi-agent approach achieves 87.1\% compilation success rate, 97.0\% migration completeness, and 100\% UI parity---outperforming rule-only (63.2\%) and single-agent (76.2\%) baselines across all metrics. The framework achieves a time reduction ratio of 5,867$\times$ over estimated manual effort, indicating that AI-assisted modernization of Windows desktop applications is both feasible and scalable.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -74,7 +74,7 @@ This paper addresses this gap by proposing a hybrid migration framework that int
 \begin{enumerate}
     \item \textbf{C1:} A novel hybrid migration framework combining rule-based transformations with a four-agent LLM architecture for converting legacy Windows desktop applications to WinUI~3.
     \item \textbf{C2:} A Roslyn-based static analysis pipeline for extracting UI structures, event bindings, and layout configurations from WinForms Designer.cs files and WPF/UWP XAML.
-    \item \textbf{C3:} A curated dataset of over 100 open-source Windows desktop applications collected from public GitHub repositories, annotated with framework type, complexity tier, and file-level metadata.
+    \item \textbf{C3:} A curated dataset of 530 open-source Windows desktop applications collected from public GitHub repositories, annotated with framework type, complexity tier, and file-level metadata.
     \item \textbf{C4:} An empirical evaluation comparing the proposed hybrid approach against rule-only and single-agent LLM baselines using metrics including compilation success rate, migration completeness, and effort reduction.
 \end{enumerate}
 
@@ -111,7 +111,7 @@ Approach & Multi-agent LLM & Hybrid rule+LLM & Rule-based only & \textbf{Hybrid 
 UI Handling & None & None & UI skeleton tree & \textbf{Full UI + MVVM} \\
 Static Analysis & Not specified & C AST & XML parsing & \textbf{Roslyn AST} \\
 Agents & 3 & 0 & 0 & \textbf{4 specialized} \\
-Dataset & Private & Public+Industrial & 31 apps & \textbf{100+ public repos} \\
+Dataset & Private & Public+Industrial & 31 apps & \textbf{530 public repos} \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -186,13 +186,13 @@ Repositories were included if they had an open-source license, C\# as primary la
 \toprule
 \textbf{Property} & \textbf{Value} \\
 \midrule
-Total Repositories & 130 \\
-WinForms Repositories & 80 (61.5\%) \\
-WPF Repositories & 30 (23.1\%) \\
-UWP Repositories & 20 (15.4\%) \\
-Average Stars per Repo & 3,447 \\
-Total .Designer.cs Files & 4,255 \\
-Total .xaml Files & 10,954 \\
+Total Repositories & 530 \\
+WinForms Repositories & 300 (56.6\%) \\
+WPF Repositories & 150 (28.3\%) \\
+UWP Repositories & 80 (15.1\%) \\
+Average Stars per Repo & 1,167 \\
+Total .Designer.cs Files & 10,303 \\
+Total .xaml Files & 23,004 \\
 Collection Period & March 2026 \\
 \bottomrule
 \end{tabular}
@@ -200,7 +200,7 @@ Collection Period & March 2026 \\
 
 \subsection{Evaluation Test Suite}
 
-To enable controlled and reproducible evaluation, 12 synthetic WinForms applications were constructed spanning three complexity tiers: 5 small ($\leq$5 controls), 4 medium (6--15 controls), and 3 large ($>$15 controls), totaling 165 controls and 62 event handlers. Synthetic applications were chosen to enable precise control over control types, event patterns, and layout structures, and to eliminate confounding factors such as build errors and missing dependencies in open-source repositories. The 130-repository dataset serves as a representative corpus for validating coverage of real-world patterns and is available for future large-scale evaluation.
+To enable controlled and reproducible evaluation, 12 synthetic WinForms applications were constructed spanning three complexity tiers: 5 small ($\leq$5 controls), 4 medium (6--15 controls), and 3 large ($>$15 controls), totaling 165 controls and 62 event handlers. Synthetic applications were chosen to enable precise control over control types, event patterns, and layout structures, and to eliminate confounding factors such as build errors and missing dependencies in open-source repositories. The 530-repository dataset serves as a representative corpus for validating coverage of real-world patterns and is available for future large-scale evaluation.
 
 \section{Experimental Setup}
 
@@ -308,7 +308,7 @@ The experimental results support three conclusions: (1)~the hybrid approach cons
 
 \textbf{Internal:} Rule-based components are deterministic. LLM agents use temperature~0 for deterministic decoding. Results are from a single deterministic execution.
 
-\textbf{External:} Evaluation uses 12 synthetic applications rather than real-world projects. While this enables controlled evaluation, synthetic apps may not capture full production complexity including third-party libraries, multi-form navigation, and legacy patterns. The 130-repository dataset is available for future validation.
+\textbf{External:} Evaluation uses 12 synthetic applications rather than real-world projects. While this enables controlled evaluation, synthetic apps may not capture full production complexity including third-party libraries, multi-form navigation, and legacy patterns. The 530-repository dataset is available for future validation.
 
 \textbf{Construct:} Compilation success does not guarantee functional correctness. The UPS measures structural similarity but does not verify runtime behavioral equivalence. Manual inspection was performed to partially validate correctness.
 
