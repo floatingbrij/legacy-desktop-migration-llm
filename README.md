@@ -172,6 +172,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Author
 
 **Brijesharun G**  
-PG Scholar, Dept. of Computing Technologies  
+PG Scholar, Dept. of Data Science and Business Systems  
 SRM Institute of Science and Technology, Kattankulathur, India  
 brijesharun@gmail.com

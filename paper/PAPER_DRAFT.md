@@ -2,8 +2,8 @@
 
 **Brijesharun G¹, Dr. Hariprasad S²**
 
-¹ PG Scholar, Dept. of Computing Technologies, SRM Institute of Science and Technology, Kattankulathur, India. brijesharun@gmail.com  
-² Associate Professor, Dept. of Computing Technologies, SRM Institute of Science and Technology, Kattankulathur, India. haripras2@srmist.edu.in
+¹ PG Scholar, Dept. of Data Science and Business Systems, SRM Institute of Science and Technology, Kattankulathur, India. brijesharun@gmail.com  
+² Associate Professor, Dept. of Data Science and Business Systems, SRM Institute of Science and Technology, Kattankulathur, India. haripras2@srmist.edu.in
 
 ---
 
