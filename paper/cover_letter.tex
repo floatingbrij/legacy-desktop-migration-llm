@@ -1,0 +1,56 @@
+\documentclass[11pt]{letter}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\signature{Brijesharun G \\ M.Tech (Software Engineering) \\ Dept. of Computing Technologies \\ SRM Institute of Science and Technology \\ Kattankulathur, India \\ brijesharun@gmail.com}
+
+\date{\today}
+
+\begin{document}
+
+\begin{letter}{Editor-in-Chief}
+
+\opening{Dear Editor,}
+
+We are pleased to submit our manuscript entitled \textbf{``Automated Migration of Legacy Windows Desktop Applications to WinUI~3 Using Hybrid Rule-Based and Multi-Agent LLM Framework''} for consideration for publication in your journal.
+
+This paper addresses a significant and previously unexplored problem in software modernization: the automated migration of legacy Windows desktop applications (WinForms, WPF, UWP) to Microsoft's modern WinUI~3 framework. While existing research has focused on programming language translation (e.g., C-to-Rust, PL/SQL-to-Java) or backend system modernization, no prior work addresses UI framework migration in the Windows desktop ecosystem.
+
+Our key contributions include:
+
+\begin{enumerate}
+    \item A novel \textbf{hybrid migration framework} that combines deterministic rule-based transformations with a four-agent Large Language Model (LLM) architecture, where specialized agents handle analysis, translation, refactoring, and verification tasks collaboratively.
+
+    \item A \textbf{Roslyn-based static analysis pipeline} for extracting UI control hierarchies, event bindings, and layout configurations from legacy source code into a framework-agnostic intermediate representation.
+
+    \item A \textbf{curated dataset of 530 open-source Windows desktop applications} collected from public GitHub repositories, annotated with framework type, complexity tier, and file-level metadata.
+
+    \item An \textbf{empirical evaluation} demonstrating that the hybrid multi-agent approach achieves 87.1\% compilation success rate, 97.0\% migration completeness, and 100\% UI parity---substantially outperforming rule-only (63.2\%) and single-agent LLM (76.2\%) baselines. The framework achieves a time reduction ratio of 5,867$\times$ over estimated manual effort.
+\end{enumerate}
+
+This work is particularly timely given the growing industry adoption of LLM-assisted software engineering workflows and Microsoft's ongoing push to modernize its desktop development platform. Our framework and dataset are publicly available at \url{https://github.com/floatingbrij/legacy-desktop-migration-llm} to support reproducibility.
+
+This manuscript is original work, has not been published elsewhere, and is not under consideration by any other journal. All authors have read and approved the manuscript.
+
+We suggest the following potential reviewers based on their expertise in related areas:
+
+\begin{itemize}
+    \item \textbf{Dr. Lakshmi Moti} --- Expert in multi-agent LLM architectures for code migration
+    \item \textbf{Dr. Yuchen Luo} --- Researcher in LLM-assisted systems programming language migration
+    \item \textbf{Dr. Jialun Cheng} --- Researcher in automated software modernization and refactoring
+\end{itemize}
+
+We look forward to your consideration.
+
+\closing{Sincerely,}
+
+\vspace{-0.3in}
+\noindent \textbf{Corresponding Author:} \\
+Dr. Hariprasad S \\
+Dept. of Computing Technologies \\
+SRM Institute of Science and Technology \\
+Kattankulathur, India \\
+haripras2@srmist.edu.in
+
+\end{letter}
+\end{document}

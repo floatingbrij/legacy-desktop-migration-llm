@@ -61,7 +61,9 @@ The migration process follows a **five-stage pipeline**:
 │       └── single_agent/       # Generated output (single-agent baseline)
 ├── dataset/                    # GitHub dataset collection
 │   ├── collect_dataset.py      # GitHub API dataset collector
-│   └── dataset.csv             # 130 repositories metadata
+│   ├── collect_dataset_large.py # Expanded collector (530 repos)
+│   ├── dataset.csv             # 530 repositories metadata
+│   └── dataset_stats.md        # Dataset statistics summary
 ├── paper/                      # Research paper
 │   ├── PAPER_DRAFT.md          # Full paper (Markdown)
 │   └── paper_ieee.tex          # IEEE conference format (LaTeX)
@@ -112,6 +114,10 @@ python demo.py --full
 
 Runs all 12 test apps across 3 baselines (rule-only, single-agent, hybrid) and prints the results table.
 
+### Run Notebook (Recommended)
+
+Open `framework/migration_pipeline_notebook.ipynb` in Jupyter or Google Colab for an interactive walkthrough of the full pipeline with visualizations.
+
 ### Regenerate Figures
 
 ```bash
@@ -120,10 +126,10 @@ python generate_figures.py
 
 ## Dataset
 
-130 open-source Windows desktop repositories collected from GitHub:
-- 80 WinForms, 30 WPF, 20 UWP
-- Average 3,447 stars per repository
-- Notable repos: ScreenToGif, ImageGlass, MaterialDesignInXamlToolkit
+530 open-source Windows desktop repositories collected from GitHub:
+- 300 WinForms, 150 WPF, 80 UWP
+- Average 1,167 stars per repository
+- 10,303 `.Designer.cs` files, 23,004 `.xaml` files, 210,266 `.cs` files
 
 See [`dataset/dataset.csv`](dataset/dataset.csv) for the full list.
 
